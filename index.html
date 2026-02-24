@@ -181,7 +181,8 @@
       }
 
       .skill-section {
-        height: 100vh;
+        min-height: 100vh; /* Gunakan min-height agar bisa memanjang ke bawah */
+        padding: 80px 0; /* Tambah padding agar teks tidak mepet */
         overflow: hidden;
         position: relative;
       }
@@ -569,6 +570,26 @@
           opacity: 0;
         }
       }
+
+      @media (max-width: 576px) {
+        .skill-section {
+          height: auto; /* Lepaskan kunci tinggi layar di HP */
+          padding: 50px 0;
+        }
+
+        .skill-content h2 {
+          font-size: 1.8rem !important; /* Perkecil sedikit judul di HP */
+          white-space: normal; /* Biarkan teks turun ke bawah jika perlu */
+        }
+
+        .skill-card {
+          padding: 15px; /* Perkecil padding kartu di HP */
+        }
+
+        .skill-card i {
+          font-size: 2rem; /* Perkecil ikon di HP */
+        }
+      }
       @media (max-width: 992px) {
         .hero-section {
           text-align: center;
@@ -690,7 +711,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#" style="color: var(--primary)"><i class="fas fa-terminal"></i> LVL 99 DEV</a>
+        <a class="navbar-brand fw-bold" href="#" style="color: var(--primary)"><i class="fas fa-terminal"></i> GEKA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="fas fa-bars"></span>
         </button>
@@ -807,7 +828,9 @@
         </div>
       </div>
       <div class="container position-relative text-center skill-content">
-        <h2 class="mb-5 text-uppercase" style="font-weight: 900; letter-spacing: 3px">Skills Matrix</h2>
+        <div class="container position-relative text-center skill-content">
+          <h2 class="mb-5 text-uppercase fw-black text-break" style="font-weight: 900; letter-spacing: 3px; width: 100%">Skills Matrix</h2>
+        </div>
         <div class="row justify-content-center g-4">
           <div class="col-6 col-md-3" data-aos="flip-up" data-aos-delay="100">
             <div class="skill-card">
@@ -906,9 +929,11 @@
         </div>
       </div>
 
-      <div id="output" style="height: 120px; overflow-y: auto; font-size: 0.8rem">
-        System initialized...<br />
-        Awaiting input...
+      <div id="output" style="height: 120px; overflow-y: auto; font-size: 0.9rem">
+        <div style="color: #00f3ff">System initialized... [OK]</div>
+        <div style="color: #ffffff">Awaiting input. Type commands:</div>
+        <div style="color: #00ff00">> <b>home</b>, <b>skills</b>, <b>projects</b>, <b>hire</b>, <b>clear</b></div>
+        <div style="color: #aaaaaa; font-size: 0.7rem">-----------------------------------------</div>
       </div>
 
       <div class="d-flex align-items-center mt-2">
@@ -985,7 +1010,7 @@
       <div class="container">
         <div class="row g-4 mb-5 text-start">
           <div class="col-lg-4">
-            <h4 class="fw-bold mb-3" style="color: var(--primary)"><i class="fas fa-terminal"></i> LVL 99 DEV</h4>
+            <h4 class="fw-bold mb-3" style="color: var(--primary)"><i class="fas fa-terminal"></i> GEKA</h4>
             <p class="small opacity-75">A dedicated Web Developer crafting immersive digital experiences.</p>
           </div>
 
