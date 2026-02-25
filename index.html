@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
@@ -285,19 +286,23 @@
               <form id="contact-form">
                 <div class="row g-3">
                   <div class="col-md-6">
-                    <input type="text" class="form-control-cyber w-100" placeholder="Your Name" required />
+                    <input type="text" id="user-name" class="form-control-cyber w-100" placeholder="Your Name" required />
                   </div>
                   <div class="col-md-6">
-                    <input type="email" class="form-control-cyber w-100" placeholder="Email Address" required />
+                    <input type="email" id="user-email" class="form-control-cyber w-100" placeholder="Email Address" required />
                   </div>
                   <div class="col-12">
-                    <input type="text" class="form-control-cyber w-100" placeholder="Project Subject" />
+                    <input type="text" id="project-subject" class="form-control-cyber w-100" placeholder="Project Subject" />
                   </div>
                   <div class="col-12">
-                    <textarea class="form-control-cyber w-100" rows="5" placeholder="Project Details" required></textarea>
+                    <textarea id="project-details" class="form-control-cyber w-100" rows="5" placeholder="Project Details" required></textarea>
+                  </div>
+                  <div class="col-12 d-flex gap-2">
+                    <button type="submit" class="btn-send flex-grow-1"><i class="fas fa-paper-plane me-2"></i> SEND MESSAGE</button>
+                    <button type="reset" id="reset-btn" class="btn-send bg-secondary border-0" style="width: auto"><i class="fas fa-undo"></i></button>
                   </div>
                   <div class="col-12">
-                    <button type="submit" class="btn-send"><i class="fas fa-paper-plane me-2"></i> SEND MESSAGE</button>
+                    <div id="status-msg" class="mt-2 small p-2" style="display: none; font-family: &quot;Courier New&quot;, monospace; border-left: 3px solid"></div>
                   </div>
                 </div>
               </form>

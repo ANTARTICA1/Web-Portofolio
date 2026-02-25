@@ -138,3 +138,68 @@ function changeFontSize(size) {
   document.documentElement.style.fontSize = size * 100 + "%";
   document.getElementById("fontOptions").classList.remove("show");
 }
+
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("user-name").value;
+  const email = document.getElementById("user-email").value;
+  const subject = document.getElementById("project-subject").value || "No Subject";
+  const details = document.getElementById("project-details").value;
+  const myPhone = "6282247846546";
+
+  Swal.fire({
+    title: "> INITIALIZING...",
+    html: '<div style="color: #0df2c9">> Encrypting message...<br>> Establishing secure link...</div>',
+    background: "#0a0a0a",
+    showConfirmButton: false,
+    allowOutsideClick: false,
+    customClass: {
+      popup: "swal-cyber-popup",
+      title: "swal-cyber-title",
+    },
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  });
+
+  if (name && email && details) {
+    setTimeout(() => {
+      Swal.fire({
+        icon: "success",
+        title: "> ACCESS GRANTED",
+        html: `
+          <div class="swal-cyber-content">
+            <p>> STATUS: 200 OK</p>
+            <p>> TARGET: WhatsApp Network</p>
+          </div>
+        `,
+        background: "#0a0a0a",
+        confirmButtonColor: "#0df2c9",
+        confirmButtonText: "PROCEED",
+        customClass: {
+          popup: "swal-cyber-popup",
+          title: "swal-cyber-title",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const messageWA = `Halo Gung Krisna, saya *${name}* (${email}).%0A%0A*Subject:* ${subject}%0A*Details:* ${details}`;
+          window.open(`https://wa.me/${myPhone}?text=${messageWA}`, "_blank");
+          this.reset();
+        }
+      });
+    }, 1500);
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "> ACCESS DENIED",
+      text: "ERROR: Required fields missing. Secure link failed.",
+      background: "#0a0a0a",
+      confirmButtonColor: "#ff003c",
+      customClass: {
+        popup: "swal-cyber-popup",
+        title: "swal-cyber-title",
+      },
+    });
+  }
+});

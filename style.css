@@ -744,3 +744,21 @@ footer {
   font-size: 0.8rem;
   cursor: pointer;
 }
+
+.swal-cyber-popup {
+  border: 2px solid #0df2c9 !important;
+  box-shadow: 0 0 20px rgba(13, 242, 201, 0.4) !important;
+  border-radius: 0 !important;
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+.swal-cyber-title {
+  color: #0df2c9 !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.swal-cyber-content {
+  color: #fff !important;
+  text-align: left !important;
+}
