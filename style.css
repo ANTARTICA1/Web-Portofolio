@@ -1887,11 +1887,34 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0 !important;
 }
 
+html:has(body.modal-open),
+html.modal-open {
+  overflow: hidden !important;
+  height: 100% !important;
+  overscroll-behavior: none !important;
+}
+
+body.modal-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
 body.modal-open .project-slide-indicators {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+.modal,
+.modal-dialog,
+.modal-content {
+  overscroll-behavior: contain !important;
+}
+
+.modal-body {
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch;
 }
 
 .cyber-modal-footer {
@@ -2449,6 +2472,18 @@ footer {
 
   footer {
     padding: 20px 16px calc(65px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  body.modal-open #mini-console,
+  body.modal-open .accessibility-wrapper {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .cyber-modal-footer {
+    padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 
