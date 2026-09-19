@@ -1809,12 +1809,24 @@ h1, h2, h3, h4, h5, h6 {
   color: #cbd5e1 !important;
 }
 
+.modal-backdrop {
+  --bs-backdrop-bg: #020408;
+  --bs-backdrop-opacity: 0.88;
+}
+
+.modal-backdrop.show {
+  opacity: 0.88 !important;
+  background-color: #020408 !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
 .cyber-modal-content {
   background: #080c16;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(0, 243, 255, 0.08);
   border-radius: 20px;
   overflow: hidden;
   color: var(--text-main);
