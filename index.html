@@ -13,12 +13,14 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="stylesheet" href="style.css?v=6.3" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/projects.css" />
   </head>
   <body>
 
@@ -33,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto text-center align-items-center">
             <li class="nav-item"><a class="nav-link" href="#home"><i class="fas fa-house-chimney me-1 small"></i> Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#skills"><i class="fas fa-layer-group me-1 small"></i> Skills</a></li>
+            <li class="nav-item"><a class="nav-link" href="#skills"><i class="fas fa-layer-group me-1 small"></i> Tech Stack</a></li>
             <li class="nav-item"><a class="nav-link" href="#projects"><i class="fas fa-folder-open me-1 small"></i> Projects</a></li>
             <li class="nav-item"><a class="nav-link" href="#contact"><i class="fas fa-paper-plane me-1 small"></i> Contact</a></li>
             <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
@@ -56,7 +58,7 @@
               <div class="hero-image-wrapper">
                 <div class="profile-sonar-ring"></div>
                 <div class="profile-scanline"></div>
-                <img src="img/foto.jpeg" class="hero-img" alt="Foto Profil Krisna Artha Wibawa" loading="eager" />
+                <img src="assets/foto.jpeg" class="hero-img" alt="Foto Profil Krisna Artha Wibawa" loading="eager" />
               </div>
             </div>
           </div>
@@ -155,131 +157,83 @@
       </div>
 
       <div class="container-fluid position-relative text-center skill-content py-5 px-2 px-md-3 px-xl-4">
-        <div class="section-tag mb-2" data-aos="fade-down">
-          <span class="font-mono text-info">// TECHNICAL CAPABILITIES</span>
-        </div>
-        <h2 class="section-title mb-3" data-aos="fade-up">SKILLS MATRIX &amp; EXPERTISE</h2>
-        <p class="section-subtitle mb-5 mx-auto" style="max-width: 650px" data-aos="fade-up" data-aos-delay="100">
-          Kombinasi kompetensi pengujian keamanan siber, administrasi infrastruktur sistem, serta metodologi pengembangan aplikasi modern.
+        <h2 class="techstack-title mb-3" data-aos="fade-up">Techstacks</h2>
+        <p class="techstack-subtitle mb-5 mx-auto" data-aos="fade-up" data-aos-delay="100">
+          Teknologi, sistem operasi, dan perangkat lunak keamanan siber yang saya gunakan.
         </p>
 
-        <div class="skills-grid">
-          <div class="skill-card-modern" data-aos="fade-up" data-aos-delay="100">
-            <div class="skill-card-header">
-              <div class="skill-icon-box">
-                <i class="fas fa-shield-halved"></i>
-              </div>
-              <span class="skill-card-percent" data-target="90">90%</span>
+        <div class="techstack-showcase mx-auto" data-aos="fade-up" data-aos-delay="200">
+          <div class="techstack-row">
+            <div class="tech-icon-wrapper" data-name="JavaScript" title="JavaScript">
+              <i class="devicon-javascript-plain colored"></i>
             </div>
-            <h3 class="skill-card-title">Network Security</h3>
-            <div class="skill-progress-track">
-              <div class="skill-progress-bar" data-width="90%" style="width: 0%"></div>
+            <div class="tech-icon-wrapper" data-name="HTML5" title="HTML5">
+              <i class="devicon-html5-plain colored"></i>
             </div>
-            <p class="skill-card-desc">Network defense, analysis, and secure configuration.</p>
-            <div class="skill-card-tags">
-              <span class="skill-pill-tag">Wireshark</span>
-              <span class="skill-pill-tag">Firewall</span>
-              <span class="skill-pill-tag">IDS/IPS</span>
+            <div class="tech-icon-wrapper" data-name="CSS3" title="CSS3">
+              <i class="devicon-css3-plain colored"></i>
             </div>
-          </div>
-
-          <div class="skill-card-modern" data-aos="fade-up" data-aos-delay="150">
-            <div class="skill-card-header">
-              <div class="skill-icon-box">
-                <i class="fas fa-user-secret"></i>
-              </div>
-              <span class="skill-card-percent" data-target="85">85%</span>
+            <div class="tech-icon-wrapper" data-name="Bootstrap" title="Bootstrap 5">
+              <i class="devicon-bootstrap-plain colored"></i>
             </div>
-            <h3 class="skill-card-title">Pentesting</h3>
-            <div class="skill-progress-track">
-              <div class="skill-progress-bar" data-width="85%" style="width: 0%"></div>
+            <div class="tech-icon-wrapper" data-name="PHP" title="PHP">
+              <i class="devicon-php-plain colored"></i>
             </div>
-            <p class="skill-card-desc">Vulnerability assessment and ethical hacking.</p>
-            <div class="skill-card-tags">
-              <span class="skill-pill-tag">Kali Linux</span>
-              <span class="skill-pill-tag">Burp Suite</span>
-              <span class="skill-pill-tag">Metasploit</span>
+            <div class="tech-icon-wrapper" data-name="Python" title="Python">
+              <i class="devicon-python-plain colored"></i>
+            </div>
+            <div class="tech-icon-wrapper" data-name="Bash" title="Bash Scripting">
+              <i class="devicon-bash-plain" style="color: #4eaa25"></i>
+            </div>
+            <div class="tech-icon-wrapper" data-name="MySQL" title="MySQL">
+              <i class="devicon-mysql-original colored"></i>
+            </div>
+            <div class="tech-icon-wrapper" data-name="Apache" title="Apache Web Server">
+              <i class="devicon-apache-plain colored"></i>
+            </div>
+            <div class="tech-icon-wrapper" data-name="Docker" title="Docker">
+              <i class="devicon-docker-plain colored"></i>
             </div>
           </div>
 
-          <div class="skill-card-modern" data-aos="fade-up" data-aos-delay="200">
-            <div class="skill-card-header">
-              <div class="skill-icon-box">
-                <i class="fas fa-key"></i>
-              </div>
-              <span class="skill-card-percent" data-target="88">88%</span>
+          <div class="techstack-row">
+            <div class="tech-icon-wrapper" data-name="Kali Linux" title="Kali Linux">
+              <i class="devicon-kalilinux-plain colored"></i>
             </div>
-            <h3 class="skill-card-title">API Security</h3>
-            <div class="skill-progress-track">
-              <div class="skill-progress-bar" data-width="88%" style="width: 0%"></div>
+            <div class="tech-icon-wrapper" data-name="Wireshark" title="Wireshark">
+              <img src="https://cdn.simpleicons.org/wireshark/1679A7" alt="Wireshark" class="tech-svg-img" />
             </div>
-            <p class="skill-card-desc">Secure API design, testing, and monitoring.</p>
-            <div class="skill-card-tags">
-              <span class="skill-pill-tag">Postman</span>
-              <span class="skill-pill-tag">OWASP</span>
-              <span class="skill-pill-tag">JWT</span>
+            <div class="tech-icon-wrapper" data-name="Burp Suite" title="Burp Suite">
+              <img src="https://cdn.simpleicons.org/burpsuite/FF6633" alt="Burp Suite" class="tech-svg-img" />
             </div>
-          </div>
-
-          <div class="skill-card-modern" data-aos="fade-up" data-aos-delay="250">
-            <div class="skill-card-header">
-              <div class="skill-icon-box">
-                <i class="fab fa-linux"></i>
-              </div>
-              <span class="skill-card-percent" data-target="82">82%</span>
+            <div class="tech-icon-wrapper" data-name="Metasploit" title="Metasploit">
+              <img src="https://cdn.simpleicons.org/metasploit/146EB4" alt="Metasploit" class="tech-svg-img" />
             </div>
-            <h3 class="skill-card-title">Linux Admin</h3>
-            <div class="skill-progress-track">
-              <div class="skill-progress-bar" data-width="82%" style="width: 0%"></div>
+            <div class="tech-icon-wrapper" data-name="OWASP" title="OWASP">
+              <img src="https://cdn.simpleicons.org/owasp/FFFFFF" alt="OWASP" class="tech-svg-img" />
             </div>
-            <p class="skill-card-desc">System administration, server hardening, and automation.</p>
-            <div class="skill-card-tags">
-              <span class="skill-pill-tag">Ubuntu</span>
-              <span class="skill-pill-tag">Bash</span>
-              <span class="skill-pill-tag">Docker</span>
+            <div class="tech-icon-wrapper" data-name="Ubuntu" title="Ubuntu Linux">
+              <i class="devicon-ubuntu-plain colored"></i>
             </div>
-          </div>
-
-          <div class="skill-card-modern" data-aos="fade-up" data-aos-delay="300">
-            <div class="skill-card-header">
-              <div class="skill-icon-box">
-                <i class="fas fa-code"></i>
-              </div>
-              <span class="skill-card-percent" data-target="88">88%</span>
+            <div class="tech-icon-wrapper" data-name="Git" title="Git">
+              <i class="devicon-git-plain colored"></i>
             </div>
-            <h3 class="skill-card-title">Web Fullstack</h3>
-            <div class="skill-progress-track">
-              <div class="skill-progress-bar" data-width="88%" style="width: 0%"></div>
+            <div class="tech-icon-wrapper" data-name="GitHub" title="GitHub">
+              <i class="devicon-github-original" style="color: #f1f5f9"></i>
             </div>
-            <p class="skill-card-desc">Modern web development from frontend to backend.</p>
-            <div class="skill-card-tags">
-              <span class="skill-pill-tag">Laravel</span>
-              <span class="skill-pill-tag">React/Next</span>
-              <span class="skill-pill-tag">MySQL</span>
+            <div class="tech-icon-wrapper" data-name="Postman" title="Postman">
+              <i class="devicon-postman-plain colored"></i>
             </div>
-          </div>
-
-          <div class="skill-card-modern" data-aos="fade-up" data-aos-delay="350">
-            <div class="skill-card-header">
-              <div class="skill-icon-box">
-                <i class="fas fa-list-check"></i>
-              </div>
-              <span class="skill-card-percent" data-target="86">86%</span>
+            <div class="tech-icon-wrapper" data-name="VS Code" title="Visual Studio Code">
+              <i class="devicon-vscode-plain colored"></i>
             </div>
-            <h3 class="skill-card-title">Agile &amp; SDLC</h3>
-            <div class="skill-progress-track">
-              <div class="skill-progress-bar" data-width="86%" style="width: 0%"></div>
-            </div>
-            <p class="skill-card-desc">Project management, team collaboration, and delivery.</p>
-            <div class="skill-card-tags">
-              <span class="skill-pill-tag">Agile</span>
-              <span class="skill-pill-tag">Git</span>
-              <span class="skill-pill-tag">CI/CD</span>
+            <div class="tech-icon-wrapper" data-name="Figma" title="Figma UI/UX">
+              <i class="devicon-figma-plain colored"></i>
             </div>
           </div>
         </div>
 
-        <div class="skill-quote-box" data-aos="fade-up" data-aos-delay="400">
+        <div class="skill-quote-box mt-5" data-aos="fade-up" data-aos-delay="300">
           <p class="skill-quote-text"><i class="fas fa-quote-left quote-icon"></i> Tools change, but problem-solving and curiosity always stay relevant. <i class="fas fa-quote-right quote-icon"></i></p>
           <div class="quote-accent-line"></div>
         </div>
@@ -294,10 +248,6 @@
           <p class="section-subtitle small mx-auto mb-2" style="max-width: 500px">
             Sistem informasi teruji, arsitektur keamanan siber, dan rekayasa web modern.
           </p>
-        </div>
-
-        <div class="projects-progress-track">
-          <div class="projects-progress-fill" id="projectsProgressFill"></div>
         </div>
 
         <div class="project-slide-indicators" id="projectSlideIndicators">
@@ -330,7 +280,7 @@
 
                 <div class="d-lg-none mb-4">
                   <div class="project-media-frame panel-visual-card position-relative" onclick="openProjectModal(0)">
-                    <img src="img/project1.png" class="panel-visual-img" alt="STIKOM Bali Web Redesign" loading="lazy" decoding="async" />
+                    <img src="assets/project1.png" class="panel-visual-img" alt="STIKOM Bali Web Redesign" loading="lazy" decoding="async" />
                     <button class="media-expand-btn" aria-label="Lihat Detail" type="button"><i class="fas fa-expand"></i></button>
                     <div class="media-meta-overlay">
                       <div>
@@ -394,7 +344,7 @@
 
               <div class="col-lg-5 d-none d-lg-block">
                 <div class="project-media-frame panel-visual-card position-relative" onclick="openProjectModal(0)">
-                  <img src="img/project1.png" class="panel-visual-img" alt="STIKOM Bali Web Redesign" loading="lazy" decoding="async" />
+                  <img src="assets/project1.png" class="panel-visual-img" alt="STIKOM Bali Web Redesign" loading="lazy" decoding="async" />
                   <button class="media-expand-btn" aria-label="Lihat Detail" type="button"><i class="fas fa-expand"></i></button>
                   <div class="media-meta-overlay">
                     <div>
@@ -425,7 +375,7 @@
 
                 <div class="d-lg-none mb-4">
                   <div class="project-media-frame panel-visual-card position-relative" onclick="openProjectModal(1)">
-                    <img src="img/project2.png" class="panel-visual-img" alt="Customer Management System" loading="lazy" decoding="async" />
+                    <img src="assets/project2.png" class="panel-visual-img" alt="Customer Management System" loading="lazy" decoding="async" />
                     <button class="media-expand-btn" aria-label="Lihat Detail" type="button"><i class="fas fa-expand"></i></button>
                     <div class="media-meta-overlay">
                       <div>
@@ -489,7 +439,7 @@
 
               <div class="col-lg-5 d-none d-lg-block">
                 <div class="project-media-frame panel-visual-card position-relative" onclick="openProjectModal(1)">
-                  <img src="img/project2.png" class="panel-visual-img" alt="Customer Management System" loading="lazy" decoding="async" />
+                  <img src="assets/project2.png" class="panel-visual-img" alt="Customer Management System" loading="lazy" decoding="async" />
                   <button class="media-expand-btn" aria-label="Lihat Detail" type="button"><i class="fas fa-expand"></i></button>
                   <div class="media-meta-overlay">
                     <div>
@@ -520,7 +470,7 @@
 
                 <div class="d-lg-none mb-4">
                   <div class="project-media-frame panel-visual-card position-relative" onclick="openProjectModal(2)">
-                    <img src="img/project3.png" class="panel-visual-img" alt="STIKOM Bali TheoTown Plugin" loading="lazy" decoding="async" />
+                    <img src="assets/project3.png" class="panel-visual-img" alt="STIKOM Bali TheoTown Plugin" loading="lazy" decoding="async" />
                     <button class="media-expand-btn" aria-label="Lihat Detail" type="button"><i class="fas fa-expand"></i></button>
                     <div class="media-meta-overlay">
                       <div>
@@ -583,7 +533,7 @@
 
               <div class="col-lg-5 d-none d-lg-block">
                 <div class="project-media-frame panel-visual-card position-relative" onclick="openProjectModal(2)">
-                  <img src="img/project3.png" class="panel-visual-img" alt="STIKOM Bali TheoTown Plugin" loading="lazy" decoding="async" />
+                  <img src="assets/project3.png" class="panel-visual-img" alt="STIKOM Bali TheoTown Plugin" loading="lazy" decoding="async" />
                   <button class="media-expand-btn" aria-label="Lihat Detail" type="button"><i class="fas fa-expand"></i></button>
                   <div class="media-meta-overlay">
                     <div>
@@ -606,11 +556,11 @@
                 Tertarik Menjelajahi Karya Lainnya?
               </h2>
               <p class="archive-hook-desc mx-auto mb-4">
-                Buka repositori lengkap untuk menemukan skrip audit siber, proteksi API, aplikasi web, dan tools modding lainnya.
+                Buka repositori lengkap untuk menemukan aplikasi utilitas, sistem K3 cerdas, mobile security, dan eksperimen neural connectome.
               </p>
               <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
                 <button class="btn btn-neon-cyan btn-lg px-4 py-3 fw-bold" onclick="openArchiveModal()">
-                  <i class="fas fa-boxes-stacked me-2"></i> Buka Katalog Semua Proyek (6+)
+                  <i class="fas fa-boxes-stacked me-2"></i> Buka Katalog Semua Proyek (7)
                 </button>
                 <a href="https://github.com/ANTARTICA1" target="_blank" rel="noopener noreferrer" class="btn btn-outline-cyber btn-lg px-4 py-3">
                   <i class="fab fa-github me-2"></i> GitHub Profil
@@ -711,50 +661,11 @@
       <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
         <div class="modal-content cyber-modal-content">
           <div class="modal-header cyber-modal-header border-0 pb-2">
-            <div class="d-flex align-items-center gap-2">
-              <span class="modal-icon-badge"><i class="fas fa-boxes-stacked text-info"></i></span>
-              <div>
-                <span class="modal-category-badge">REPOSITORI &amp; ARSIP KARYA</span>
-                <h4 class="modal-title fw-bold text-white mb-0" id="archiveModalTitle">Katalog Semua Proyek</h4>
-              </div>
-            </div>
+            <h4 class="modal-title fw-bold text-white mb-0" id="archiveModalTitle">Katalog Semua Proyek</h4>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
           <div class="modal-body cyber-modal-body px-3 px-md-4 pt-2 pb-4">
-            <div class="archive-controls-bar mb-4">
-              <div class="row g-3 align-items-center">
-                <div class="col-lg-5">
-                  <div class="archive-search-wrapper position-relative">
-                    <i class="fas fa-magnifying-glass archive-search-icon"></i>
-                    <input
-                      type="text"
-                      id="archiveSearchInput"
-                      class="archive-search-input font-mono w-100"
-                      placeholder="Cari proyek, teknologi, atau topik..."
-                      autocomplete="off"
-                    />
-                  </div>
-                </div>
-                <div class="col-lg-7">
-                  <div class="archive-filter-pills d-flex flex-wrap gap-2 justify-content-lg-end" id="archiveFilterContainer">
-                    <button class="archive-filter-btn active" data-category="all" onclick="filterArchiveCategory('all', this)">
-                      Semua (<span id="count-all">0</span>)
-                    </button>
-                    <button class="archive-filter-btn" data-category="cyber" onclick="filterArchiveCategory('cyber', this)">
-                      <i class="fas fa-shield-halved me-1"></i>Cyber Security (<span id="count-cyber">0</span>)
-                    </button>
-                    <button class="archive-filter-btn" data-category="web" onclick="filterArchiveCategory('web', this)">
-                      <i class="fas fa-code me-1"></i>Web Dev (<span id="count-web">0</span>)
-                    </button>
-                    <button class="archive-filter-btn" data-category="tools" onclick="filterArchiveCategory('tools', this)">
-                      <i class="fas fa-gear me-1"></i>Tools &amp; Mod (<span id="count-tools">0</span>)
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div class="row g-3 g-md-4" id="archiveProjectsGrid"></div>
 
             <div id="archiveEmptyState" class="text-center py-5 d-none">
@@ -798,15 +709,15 @@
                   </div>
                 </a>
 
-                <a href="https://wa.me/6282247846546" target="_blank" rel="noopener noreferrer" class="contact-link-row d-flex align-items-center text-decoration-none">
-                  <span class="contact-link-icon icon-whatsapp text-success me-3">
-                    <i class="fab fa-whatsapp"></i>
+                <div class="contact-link-row d-flex align-items-center">
+                  <span class="contact-link-icon icon-location text-danger me-3">
+                    <i class="fas fa-location-dot"></i>
                   </span>
                   <div class="contact-link-body">
-                    <span class="contact-link-label d-block font-mono">WHATSAPP DIRECT</span>
-                    <span class="contact-link-val text-success font-mono">+62 822-4784-6546</span>
+                    <span class="contact-link-label d-block font-mono">LOCATION / BASE</span>
+                    <span class="contact-link-val font-mono">Denpasar, Bali, Indonesia</span>
                   </div>
-                </a>
+                </div>
 
                 <div class="contact-link-row d-flex align-items-center">
                   <span class="contact-link-icon icon-discord me-3">
@@ -925,7 +836,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <script src="script.js?v=6.2"></script>
+    <script src="js/projects-data.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
 

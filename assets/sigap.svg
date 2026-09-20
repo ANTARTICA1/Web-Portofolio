@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg-sigap" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050811"/>
+      <stop offset="50%" stop-color="#180e15"/>
+      <stop offset="100%" stop-color="#09060b"/>
+    </linearGradient>
+    <radialGradient id="glow-sigap" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid-sigap" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(239, 68, 68, 0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg-sigap)"/>
+  <rect width="100%" height="100%" fill="url(#grid-sigap)"/>
+  <circle cx="400" cy="200" r="180" fill="url(#glow-sigap)"/>
+  <rect x="1" y="1" width="798" height="448" rx="8" fill="none" stroke="rgba(239, 68, 68, 0.18)" stroke-width="2"/>
+
+  <!-- Icon: Security Shield & Sensor Alarm -->
+  <g transform="translate(400, 160)" fill="none" stroke="#ef4444" stroke-width="2">
+    <!-- Shield -->
+    <path d="M 0 -38 L 36 -24 C 36 12, 18 36, 0 46 C -18 36, -36 12, -36 -24 Z" stroke="#ef4444"/>
+    <!-- Warning exclamation / sensor waves -->
+    <line x1="0" y1="-18" x2="0" y2="6" stroke="#fca5a5" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="0" cy="18" r="3" fill="#fca5a5"/>
+    <!-- Sensor motion arches -->
+    <path d="M 44 -10 C 52 0, 52 14, 44 24" stroke="rgba(239, 68, 68, 0.5)" stroke-linecap="round"/>
+    <path d="M -44 -10 C -52 0, -52 14, -44 24" stroke="rgba(239, 68, 68, 0.5)" stroke-linecap="round"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="400" y="275" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" letter-spacing="2">SIGAP</text>
+  <text x="400" y="308" text-anchor="middle" fill="#f87171" font-family="'Courier New', monospace" font-size="13" font-weight="600" letter-spacing="3">MOBILE SECURITY // ANTI-THEFT SENSOR ALARM</text>
+  <text x="400" y="330" text-anchor="middle" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">Motion &amp; Charger Detection • Sirene • Telegram Bot Alerts • GPS Location</text>
+</svg>

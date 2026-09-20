@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg-lintas" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050811"/>
+      <stop offset="50%" stop-color="#0e172a"/>
+      <stop offset="100%" stop-color="#070c18"/>
+    </linearGradient>
+    <radialGradient id="glow-lintas" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid-lintas" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(56, 189, 248, 0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg-lintas)"/>
+  <rect width="100%" height="100%" fill="url(#grid-lintas)"/>
+  <circle cx="400" cy="200" r="180" fill="url(#glow-lintas)"/>
+  <rect x="1" y="1" width="798" height="448" rx="8" fill="none" stroke="rgba(56, 189, 248, 0.15)" stroke-width="2"/>
+
+  <!-- Icon: Phone and PC Bridge Sync -->
+  <g transform="translate(400, 160)" fill="none" stroke="#38bdf8" stroke-width="2">
+    <!-- PC monitor -->
+    <rect x="-65" y="-35" width="60" height="42" rx="4" stroke="#38bdf8"/>
+    <line x1="-35" y1="7" x2="-35" y2="18"/>
+    <line x1="-48" y1="18" x2="-22" y2="18"/>
+    <!-- Phone -->
+    <rect x="25" y="-25" width="30" height="50" rx="6" stroke="#38bdf8"/>
+    <circle cx="40" cy="18" r="2" fill="#38bdf8"/>
+    <!-- Transfer arrow waves -->
+    <path d="M 0 -10 C 10 -18, 12 -18, 20 -10" stroke="#00f3ff" stroke-linecap="round"/>
+    <path d="M 20 2 C 10 10, 8 10, 0 2" stroke="#00f3ff" stroke-linecap="round"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="400" y="275" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" letter-spacing="2">LINTAS</text>
+  <text x="400" y="308" text-anchor="middle" fill="#38bdf8" font-family="'Courier New', monospace" font-size="13" font-weight="600" letter-spacing="3">CROSS-PLATFORM UTILITY // HP &amp; PC BRIDGE</text>
+  <text x="400" y="330" text-anchor="middle" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">File Transfer • Remote Touchpad • Clipboard Sync • NearLock</text>
+</svg>

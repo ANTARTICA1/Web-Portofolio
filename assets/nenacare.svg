@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg-nenacare" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050811"/>
+      <stop offset="50%" stop-color="#061a1a"/>
+      <stop offset="100%" stop-color="#040b10"/>
+    </linearGradient>
+    <radialGradient id="glow-nenacare" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid-nenacare" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(16, 185, 129, 0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg-nenacare)"/>
+  <rect width="100%" height="100%" fill="url(#grid-nenacare)"/>
+  <circle cx="400" cy="200" r="180" fill="url(#glow-nenacare)"/>
+  <rect x="1" y="1" width="798" height="448" rx="8" fill="none" stroke="rgba(16, 185, 129, 0.18)" stroke-width="2"/>
+
+  <!-- Icon: K3 Safety Cross & AI Brain Spark -->
+  <g transform="translate(400, 160)" fill="none" stroke="#10b981" stroke-width="2">
+    <!-- Safety Shield / Circle -->
+    <circle cx="0" cy="0" r="38" stroke="#10b981"/>
+    <!-- Medical / Safety Cross -->
+    <path d="M -8 -22 L 8 -22 L 8 -8 L 22 -8 L 22 8 L 8 8 L 8 22 L -8 22 L -8 8 L -22 8 L -22 -8 L -8 -8 Z" fill="#10b981" fill-opacity="0.75" stroke="#34d399"/>
+    <!-- AI Spark -->
+    <path d="M 28 -28 Q 32 -18 42 -14 Q 32 -10 28 0 Q 24 -10 14 -14 Q 24 -18 28 -28 Z" fill="#00f3ff"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="400" y="275" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" letter-spacing="2">NENACARE</text>
+  <text x="400" y="308" text-anchor="middle" fill="#34d399" font-family="'Courier New', monospace" font-size="13" font-weight="600" letter-spacing="3">K3 INCIDENT REPORTING // GEMINI AI &amp; TELEGRAM</text>
+  <text x="400" y="330" text-anchor="middle" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">AI Risk Analysis • Telegram Bot Dispatch • Incident Tracking • PDF Export</text>
+</svg>

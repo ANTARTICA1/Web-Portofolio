@@ -1,0 +1,290 @@
+/**
+ * Data Katalog Proyek Portofolio
+ * Menyimpan seluruh metadata proyek terverifikasi untuk rendering kartu dan modal detail.
+ */
+
+const projectsData = [
+  {
+    id: 0,
+    title: "NeuroFly",
+    category: "Computational Neuroscience",
+    categoryType: "tools",
+    role: "Neural Systems & Python Developer",
+    type: "Biological Connectome Pong AI",
+    status: "Completed Experiment",
+    image: "assets/neurofly.svg",
+    description: "Eksperimen game Pong yang menggunakan jaringan neuron dari dataset connectome Drosophila MaleCNS sebagai sistem pengendali permainan.",
+    problem: "Eksperimen game Pong yang menggunakan jaringan neuron dari dataset connectome Drosophila MaleCNS sebagai sistem pengendali permainan.",
+    solution: "Memodelkan arsitektur connectome 438 neuron otak Drosophila MaleCNS menggunakan neuPrint API, NetworkX, dan NumPy untuk mensimulasikan transmisi impuls biologis yang menggerakkan paddle permainan berbasis Pygame secara real-time.",
+    features: [
+      {
+        title: "Simulasi Jaringan 438 Neuron",
+        desc: "Model perambatan sinyal biologis dari klaster neuron connectome Drosophila MaleCNS.",
+      },
+      {
+        title: "Visualisasi Koneksi Sinapsis",
+        desc: "Pemetaan graf visual bobot sinapsis antar neuron motorik dan sensorik visual.",
+      },
+      {
+        title: "Neural Controller",
+        desc: "Pengendali paddle Pong digerakkan langsung oleh impuls komputasi jaringan neuron.",
+      },
+      {
+        title: "3D Brain Viewer",
+        desc: "Visualisasi spasial 3D posisi neuron dalam struktur anatomi connectome MaleCNS.",
+      },
+    ],
+    techStack: ["Python", "Pygame", "NetworkX", "NumPy", "neuPrint API"],
+    impact: "Mendemonstrasikan penerapan dataset neurobiologi connectome ke dalam kendali sistem interaktif real-time.",
+    demoUrl: "",
+    demoText: "Lihat Demo",
+    demoIcon: "fa-arrow-up-right-from-square",
+    repoUrl: "https://github.com/ANTARTICA1",
+    repoText: "Lihat di GitHub",
+  },
+  {
+    id: 1,
+    title: "Tatagih",
+    category: "Web Application",
+    categoryType: "web",
+    role: "Fullstack Web Developer",
+    type: "Subscription Management System",
+    status: "Production Ready",
+    image: "assets/tatagih.png",
+    description: "Aplikasi manajemen langganan dan tagihan untuk mencatat pembayaran rutin serta mengirim pengingat sebelum jatuh tempo.",
+    problem: "Aplikasi manajemen langganan dan tagihan untuk mencatat pembayaran rutin serta mengirim pengingat sebelum jatuh tempo.",
+    solution: "Membangun sistem web terpusat dengan framework Laravel dan MySQL, terintegrasi Telegram Bot API untuk broadcast pengingat otomatis terjadwal H-3 dan H-1, sistem manajemen kategori langganan, dan analisis pengeluaran.",
+    features: [
+      {
+        title: "Autentikasi Pengguna",
+        desc: "Autentikasi aman untuk pencatatan dan pengelolaan akun langganan pribadi.",
+      },
+      {
+        title: "Manajemen Langganan & Kategori",
+        desc: "Pencatatan tagihan rutin berkala dengan pembagian kategori layanan yang terstruktur.",
+      },
+      {
+        title: "Penyaringan & Filter Tagihan",
+        desc: "Filter praktis untuk memilah tagihan aktif, jatuh tempo dekat, dan histori pembayaran.",
+      },
+      {
+        title: "Pengingat Otomatis H-3 / H-1",
+        desc: "Pengiriman notifikasi pengingat via Telegram Bot API sebelum tanggal jatuh tempo.",
+      },
+      {
+        title: "Analisis Pengeluaran",
+        desc: "Kalkulasi total beban pembayaran bulanan untuk menjaga kesehatan anggaran finansial.",
+      },
+    ],
+    techStack: ["Laravel", "PHP", "MySQL", "Telegram Bot API", "Bootstrap"],
+    impact: "Membantu pengguna mengontrol pembayaran berkala dan menghindari denda keterlambatan secara otomatis.",
+    demoUrl: "",
+    demoText: "Lihat Demo",
+    demoIcon: "fa-arrow-up-right-from-square",
+    repoUrl: "https://github.com/ANTARTICA1/Subscription-Guard",
+    repoText: "Lihat di GitHub",
+  },
+  {
+    id: 2,
+    title: "Lintas",
+    category: "Cross-platform Utility",
+    categoryType: "tools",
+    role: "Cross-Platform Systems Developer",
+    type: "Device Synchronization Utility",
+    status: "Active Project",
+    image: "assets/lintas.svg",
+    description: "Aplikasi penghubung HP dan PC untuk transfer file, remote control, clipboard dua arah, serta penguncian otomatis ketika perangkat menjauh.",
+    problem: "Aplikasi penghubung HP dan PC untuk transfer file, remote control, clipboard dua arah, serta penguncian otomatis ketika perangkat menjauh.",
+    solution: "Menghubungkan aplikasi Flutter pada smartphone dengan Windows Companion daemon menggunakan protokol jaringan LAN Wi-Fi lokal dan Bluetooth Low Energy untuk transfer data cepat dan proteksi NearLock.",
+    features: [
+      {
+        title: "Device Pairing",
+        desc: "Penyandingan aman antar smartphone dan komputer PC melalui jaringan lokal atau Bluetooth.",
+      },
+      {
+        title: "Fast File Transfer",
+        desc: "Pengiriman berkas dokumen, foto, dan data antar perangkat berkecepatan tinggi tanpa kabel.",
+      },
+      {
+        title: "Remote Touchpad & Keyboard",
+        desc: "Kontrol kursor mouse dan input teks komputer langsung melalui layar sentuh smartphone.",
+      },
+      {
+        title: "Media Controller & Clipboard Sync",
+        desc: "Kendali playback media player dan sinkronisasi papan klip teks dua arah antar perangkat.",
+      },
+      {
+        title: "NearLock Auto-Lock",
+        desc: "Penguncian otomatis layar PC Windows ketika smartphone bergerak menjauh dari jangkauan.",
+      },
+    ],
+    techStack: ["Flutter", "Dart", "Bluetooth", "LAN/Wi-Fi", "Windows Companion"],
+    impact: "Meningkatkan efisiensi kerja lintas perangkat dan menjaga keamanan PC saat pengguna meninggalkan meja.",
+    demoUrl: "",
+    demoText: "Lihat Demo",
+    demoIcon: "fa-arrow-up-right-from-square",
+    repoUrl: "https://github.com/ANTARTICA1/lintas-flutter",
+    repoText: "Lihat di GitHub",
+  },
+  {
+    id: 3,
+    title: "Bingkai",
+    category: "Photo Management",
+    categoryType: "web",
+    role: "Backend & Web Developer",
+    type: "Photo Management & Local Server",
+    status: "Completed",
+    image: "assets/bingkai.svg",
+    description: "Aplikasi pengelola koleksi foto yang dirancang untuk mempermudah pencarian, pengelompokan, dan peninjauan banyak foto.",
+    problem: "Aplikasi pengelola koleksi foto yang dirancang untuk mempermudah pencarian, pengelompokan, dan peninjauan banyak foto.",
+    solution: "Mengembangkan media server lokal berbasis Python (FastAPI) dan SQLite dengan kompresi thumbnail Pillow (PIL), pencarian terindeks, serta antarmuka web interaktif dengan navigasi Gamepad dan keyboard.",
+    features: [
+      {
+        title: "Galeri Foto Responsif",
+        desc: "Tampilan galeri performa tinggi dengan thumbnail caching untuk ribuan berkas foto.",
+      },
+      {
+        title: "Pencarian Cepat",
+        desc: "Pencarian instan berdasarkan nama file, tag, tanggal, dan metadata gambar.",
+      },
+      {
+        title: "Filter & Pengelompokan",
+        desc: "Penyusunan album dan pengelompokan folder koleksi foto secara teratur.",
+      },
+      {
+        title: "Detail Foto & Metadata EXIF",
+        desc: "Penampil resolusi penuh dan inspeksi parameter teknis pengambilan foto kamera.",
+      },
+    ],
+    techStack: ["Python", "FastAPI", "SQLite", "Pillow", "HTML5/CSS3"],
+    impact: "Mempermudah eksplorasi, kurasi, dan peninjauan koleksi foto lokal dalam jumlah masif secara mulus.",
+    demoUrl: "",
+    demoText: "Lihat Demo",
+    demoIcon: "fa-arrow-up-right-from-square",
+    repoUrl: "https://github.com/ANTARTICA1/bingkai-app",
+    repoText: "Lihat di GitHub",
+  },
+  {
+    id: 4,
+    title: "Sigap",
+    category: "Mobile Security",
+    categoryType: "cyber",
+    role: "Mobile Security Developer",
+    type: "Device Anti-Theft & Alarm Application",
+    status: "Completed",
+    image: "assets/sigap.svg",
+    description: "Aplikasi keamanan perangkat yang mendeteksi gerakan atau charger yang dicabut, kemudian mengaktifkan alarm dan mengirimkan peringatan.",
+    problem: "Aplikasi keamanan perangkat yang mendeteksi gerakan atau charger yang dicabut, kemudian mengaktifkan alarm dan mengirimkan peringatan.",
+    solution: "Mengimplementasikan aplikasi mobile Flutter dengan sensor akselerometer dan event listener status daya charger untuk membunyikan sirene alarm keras, proteksi kata sandi PIN, serta pengiriman koordinat lokasi via Telegram Bot API.",
+    features: [
+      {
+        title: "Motion Detection",
+        desc: "Sensor akselerometer mendeteksi pergerakan atau upaya pemindahan fisik perangkat.",
+      },
+      {
+        title: "Charger Detection",
+        desc: "Memicu alarm otomatis saat kabel pengisi daya dilepaskan tanpa izin dari perangkat.",
+      },
+      {
+        title: "Sirene Keras",
+        desc: "Alarm peringatan berfrekuensi tinggi dengan volume maksimal untuk menarik perhatian publik.",
+      },
+      {
+        title: "Password Protection",
+        desc: "Alarm hanya dapat dinonaktifkan dengan memasukkan kata sandi / PIN yang benar.",
+      },
+      {
+        title: "Notifikasi Telegram & Lokasi",
+        desc: "Pengiriman peringatan darurat seketika beserta koordinat GPS lokasi ke bot Telegram.",
+      },
+    ],
+    techStack: ["Flutter", "Dart", "Device Sensors", "Telegram Bot API"],
+    impact: "Melindungi keamanan smartphone saat ditinggalkan di meja umum atau sedang diisi daya.",
+    demoUrl: "",
+    demoText: "Lihat Demo",
+    demoIcon: "fa-arrow-up-right-from-square",
+    repoUrl: "https://github.com/ANTARTICA1",
+    repoText: "Lihat di GitHub",
+  },
+  {
+    id: 5,
+    title: "Temuin",
+    category: "Community Platform",
+    categoryType: "web",
+    role: "Fullstack Mobile & Backend Developer",
+    type: "Lost & Found Community Application",
+    status: "Production Ready",
+    image: "assets/temuin.png",
+    description: "Aplikasi pelaporan dan pencarian barang hilang atau temuan dengan verifikasi kepemilikan, geolokasi, dan sistem reward terintegrasi.",
+    problem: "Platform pelaporan dan pencarian barang hilang atau temuan untuk mempermudah masyarakat mengembalikan dan menemukan barang berharga secara terpercaya.",
+    solution: "Membangun aplikasi mobile Flutter dengan backend API PHP dan database MySQL, integrasi pemetaan Google Maps untuk radius lokasi temuan, sistem pertanyaan verifikasi kepemilikan, dan gateway Midtrans Snap untuk reward apresiasi.",
+    features: [
+      {
+        title: "Lapor Barang Hilang & Ditemukan",
+        desc: "Pencatatan laporan barang lengkap dengan unggahan foto, kategori, dan deskripsi kronologis.",
+      },
+      {
+        title: "Verifikasi Bukti Kepemilikan",
+        desc: "Sistem tanya-jawab detail karakteristik barang untuk membuktikan hak kepemilikan asli.",
+      },
+      {
+        title: "Peta & Radius Lokasi (GPS)",
+        desc: "Pencarian dan pemfilteran barang temuan berdasarkan jarak radius lokasi terdekat.",
+      },
+      {
+        title: "Sistem Reward Midtrans",
+        desc: "Fitur pembayaran digital reward apresiasi kepada penemu melalui gateway Midtrans Snap.",
+      },
+    ],
+    techStack: ["Flutter", "Dart", "PHP", "MySQL", "Midtrans Snap API", "Google Maps"],
+    impact: "Menjembatani penemu dan pemilik barang hilang secara transparan, aman, dan dapat dipertanggungjawabkan.",
+    demoUrl: "",
+    demoText: "Lihat Demo",
+    demoIcon: "fa-arrow-up-right-from-square",
+    repoUrl: "https://github.com/ANTARTICA1/temuin-flutter",
+    repoText: "Lihat di GitHub",
+  },
+  {
+    id: 6,
+    title: "NenaCare",
+    category: "K3 Management System",
+    categoryType: "web",
+    role: "Fullstack Web & AI Integration Developer",
+    type: "Occupational Safety & Health (K3) System",
+    status: "Production Ready",
+    image: "assets/nenacare.svg",
+    description: "Sistem pelaporan insiden dan investigasi keselamatan kerja (K3) dengan asisten AI Google Gemini, notifikasi Telegram, dan ekspor laporan PDF.",
+    problem: "Sistem pelaporan insiden dan investigasi keselamatan dan kesehatan kerja (K3) untuk mendokumentasikan kecelakaan kerja, near-miss, dan kondisi berbahaya di lingkungan kerja.",
+    solution: "Mengembangkan aplikasi web PHP dan MySQL yang terintegrasi dengan Google Gemini AI API untuk analisis otomatis faktor penyebab insiden dan saran preventif, bot Telegram untuk notifikasi darurat, serta FPDF untuk cetak berkas laporan investigasi.",
+    features: [
+      {
+        title: "Pelaporan Insiden & Bahaya K3",
+        desc: "Formulir digital pelaporan insiden kecelakaan kerja, near-miss, dan kondisi bahaya kerja.",
+      },
+      {
+        title: "Analisis Rekomendasi Gemini AI",
+        desc: "Pemanfaatan model AI Google Gemini dalam merumuskan evaluasi risiko dan aksi pencegahan.",
+      },
+      {
+        title: "Notifikasi Cepat Telegram",
+        desc: "Broadcast otomatis informasi insiden darurat ke tim pengawas K3 melalui Telegram Bot API.",
+      },
+      {
+        title: "Ekspor Berkas PDF (FPDF)",
+        desc: "Pencetakan berita acara dan formulir investigasi K3 berstandar resmi siap arsip.",
+      },
+    ],
+    techStack: ["PHP", "MySQL", "Google Gemini AI API", "Telegram Bot API", "Bootstrap", "FPDF"],
+    impact: "Mempercepat alur investigasi K3, meningkatkan kepatuhan keselamatan kerja, dan mencegah insiden berulang.",
+    demoUrl: "",
+    demoText: "Lihat Demo",
+    demoIcon: "fa-arrow-up-right-from-square",
+    repoUrl: "https://github.com/ANTARTICA1/NenaCare",
+    repoText: "Lihat di GitHub",
+  },
+];
+
+// Ekspos ke window untuk interoperabilitas antar-modul
+if (typeof window !== "undefined") {
+  window.projectsData = projectsData;
+}
