@@ -18,6 +18,7 @@ function startPortfolioApp() {
     initFullscreenProjectsGSAP();
   }
   initNavbarMobileAutoClose();
+  initActiveNavObserver();
   initTerminalConsole();
   if (typeof updateArchiveCategoryCounts === "function") {
     updateArchiveCategoryCounts();
@@ -540,39 +541,36 @@ function processNaturalTerminalQuery(query) {
   }
 }
 
-let scrollTimer = null;
-window.addEventListener(
-  "scroll",
-  () => {
-    if (scrollTimer !== null) return;
-    scrollTimer = setTimeout(() => {
-      scrollTimer = null;
-      updateActiveNav();
-    }, 100);
-  },
-  { passive: true }
-);
-
-function updateActiveNav() {
-  const sections = document.querySelectorAll("section[id], div[id='projects']");
+function initActiveNavObserver() {
+  const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-  const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+  if (!sections.length || !navLinks.length) return;
 
-  let currentSection = "";
-  sections.forEach((sec) => {
-    const secTop = sec.offsetTop - 180;
-    const secHeight = sec.offsetHeight;
-    if (scrollPos >= secTop && scrollPos < secTop + secHeight) {
-      currentSection = sec.getAttribute("id");
-    }
-  });
+  if (typeof IntersectionObserver !== "undefined") {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            navLinks.forEach((link) => {
+              const href = link.getAttribute("href") || "";
+              if (href === `#${id}` || href.endsWith(`#${id}`)) {
+                link.classList.add("active");
+              } else {
+                link.classList.remove("active");
+              }
+            });
+          }
+        });
+      },
+      {
+        rootMargin: "-25% 0px -55% 0px",
+        threshold: 0,
+      }
+    );
 
-  navLinks.forEach((link) => {
-    link.classList.remove("active");
-    if (currentSection && link.getAttribute("href").includes(currentSection)) {
-      link.classList.add("active");
-    }
-  });
+    sections.forEach((sec) => observer.observe(sec));
+  }
 }
 
 function toggleFontOptions() {
@@ -687,18 +685,11 @@ if (contactForm) {
 }
 
 function initModalScrollLock() {
-  let isModalOpen = false;
-  let lockedPageScrollTop = 0;
-
   const modals = document.querySelectorAll(".modal");
   modals.forEach((modal) => {
     modal.addEventListener("show.bs.modal", () => {
-      isModalOpen = true;
-      lockedPageScrollTop = window.pageYOffset || document.documentElement.scrollTop;
       document.documentElement.classList.add("modal-open");
       document.body.classList.add("modal-open");
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
 
       const miniConsole = document.getElementById("mini-console");
       if (miniConsole) miniConsole.style.setProperty("display", "none", "important");
@@ -709,11 +700,8 @@ function initModalScrollLock() {
     modal.addEventListener("hidden.bs.modal", () => {
       setTimeout(() => {
         if (!document.querySelector(".modal.show")) {
-          isModalOpen = false;
           document.documentElement.classList.remove("modal-open");
           document.body.classList.remove("modal-open");
-          document.documentElement.style.overflow = "";
-          document.body.style.overflow = "";
 
           const miniConsole = document.getElementById("mini-console");
           if (miniConsole) miniConsole.style.removeProperty("display");
@@ -722,82 +710,6 @@ function initModalScrollLock() {
         }
       }, 50);
     });
-  });
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (isModalOpen) {
-        window.scrollTo(0, lockedPageScrollTop);
-      }
-    },
-    { passive: false }
-  );
-
-  window.addEventListener(
-    "wheel",
-    (e) => {
-      if (!isModalOpen && !document.body.classList.contains("modal-open")) return;
-
-      const activeModal = document.querySelector(".modal.show");
-      if (!activeModal) return;
-
-      const modalBody = e.target.closest(".modal-body");
-      if (!modalBody) {
-        e.preventDefault();
-        return;
-      }
-
-      const isAtTop = modalBody.scrollTop <= 0 && e.deltaY < 0;
-      const isAtBottom =
-        modalBody.scrollTop + modalBody.clientHeight >= modalBody.scrollHeight - 1 &&
-        e.deltaY > 0;
-
-      if (isAtTop || isAtBottom) {
-        e.preventDefault();
-      }
-    },
-    { passive: false }
-  );
-
-  window.addEventListener(
-    "touchmove",
-    (e) => {
-      if (!isModalOpen && !document.body.classList.contains("modal-open")) return;
-
-      const activeModal = document.querySelector(".modal.show");
-      if (!activeModal) return;
-
-      const modalBody = e.target.closest(".modal-body");
-      if (!modalBody) {
-        e.preventDefault();
-        return;
-      }
-
-      const isAtTop = modalBody.scrollTop <= 0;
-      const isAtBottom =
-        modalBody.scrollTop + modalBody.clientHeight >= modalBody.scrollHeight - 1;
-
-      if (isAtTop || isAtBottom) {
-        e.preventDefault();
-      }
-    },
-    { passive: false }
-  );
-
-  window.addEventListener("keydown", (e) => {
-    if (!isModalOpen && !document.body.classList.contains("modal-open")) return;
-    const scrollKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
-    if (scrollKeys.includes(e.key)) {
-      const activeModal = document.querySelector(".modal.show");
-      if (!activeModal) return;
-
-      const inInput = e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA";
-      const inModalBody = e.target.closest && e.target.closest(".modal-body");
-      if (!inInput && !inModalBody) {
-        e.preventDefault();
-      }
-    }
   });
 }
 

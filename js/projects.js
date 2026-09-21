@@ -27,31 +27,31 @@ function initFullscreenProjectsGSAP() {
 
       if (!slide0 || !slide1 || !slide2 || !slide3) return;
 
-      gsap.set(slide0, { yPercent: 0, scale: 1, opacity: 1, zIndex: 1 });
-      gsap.set(slide1, { yPercent: 100, scale: 1, opacity: 1, zIndex: 2 });
-      gsap.set(slide2, { yPercent: 100, scale: 1, opacity: 1, zIndex: 3 });
-      gsap.set(slide3, { yPercent: 100, scale: 1, opacity: 1, zIndex: 4 });
+      gsap.set(slide0, { yPercent: 0, scale: 1, opacity: 1, autoAlpha: 1, zIndex: 1, force3D: true });
+      gsap.set(slide1, { yPercent: 100, scale: 1, opacity: 1, autoAlpha: 1, zIndex: 2, force3D: true });
+      gsap.set(slide2, { yPercent: 100, scale: 1, opacity: 1, autoAlpha: 1, zIndex: 3, force3D: true });
+      gsap.set(slide3, { yPercent: 100, scale: 1, opacity: 1, autoAlpha: 1, zIndex: 4, force3D: true });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: "#projects",
           pin: "#projects-pin-wrapper",
           start: "top top",
-          end: "+=3800",
-          scrub: 0.8,
-          anticipatePin: 1,
+          end: "+=2400",
+          scrub: 0.4,
+          anticipatePin: 0,
           id: "projects-pin",
           onUpdate: (self) => {
             const p = self.progress;
 
             dots.forEach((d) => d.classList.remove("active"));
-            if (p < 0.28) {
+            if (p < 0.25) {
               dots[0]?.classList.add("active");
               if (counterText) counterText.textContent = "PROJECT 01 / 04";
-            } else if (p < 0.55) {
+            } else if (p < 0.58) {
               dots[1]?.classList.add("active");
               if (counterText) counterText.textContent = "PROJECT 02 / 04";
-            } else if (p < 0.82) {
+            } else if (p < 0.88) {
               dots[2]?.classList.add("active");
               if (counterText) counterText.textContent = "PROJECT 03 / 04";
             } else {
@@ -62,78 +62,59 @@ function initFullscreenProjectsGSAP() {
         },
       });
 
-      tl.to({}, { duration: 0.35 })
-        .to(slide0, {
-          scale: 0.93,
-          opacity: 0.25,
-          yPercent: -10,
-          ease: "power2.inOut",
+      // Transisi 01 -> 02: pergerakan linier, 1:1 terhadap scroll jari/mouse
+      tl.to(slide0, {
+        scale: 0.96,
+        opacity: 0.3,
+        ease: "none",
+        duration: 1,
+      })
+      .to(
+        slide1,
+        {
+          yPercent: 0,
+          ease: "none",
           duration: 1,
-        })
-        .to(
-          slide1,
-          {
-            yPercent: 0,
-            ease: "power2.inOut",
-            duration: 1,
-          },
-          "<"
-        )
-        .to({}, { duration: 0.35 })
-        .to(slide1, {
-          scale: 0.93,
-          opacity: 0.25,
-          yPercent: -10,
-          ease: "power2.inOut",
+        },
+        "<"
+      )
+      .set(slide0, { autoAlpha: 0 }) // Nonaktifkan rendering slide 0 di GPU saat tertutup slide 1
+
+      // Transisi 02 -> 03
+      .to(slide1, {
+        scale: 0.96,
+        opacity: 0.3,
+        ease: "none",
+        duration: 1,
+      })
+      .to(
+        slide2,
+        {
+          yPercent: 0,
+          ease: "none",
           duration: 1,
-        })
-        .to(
-          slide0,
-          {
-            opacity: 0,
-            scale: 0.88,
-            ease: "power2.inOut",
-            duration: 0.6,
-          },
-          "<"
-        )
-        .to(
-          slide2,
-          {
-            yPercent: 0,
-            ease: "power2.inOut",
-            duration: 1,
-          },
-          "<"
-        )
-        .to({}, { duration: 0.35 })
-        .to(slide2, {
-          scale: 0.93,
-          opacity: 0.25,
-          yPercent: -10,
-          ease: "power2.inOut",
+        },
+        "<"
+      )
+      .set(slide1, { autoAlpha: 0 }) // Nonaktifkan rendering slide 1 saat tertutup slide 2
+
+      // Transisi 03 -> 04 (Archive Hook)
+      .to(slide2, {
+        scale: 0.96,
+        opacity: 0.3,
+        ease: "none",
+        duration: 1,
+      })
+      .to(
+        slide3,
+        {
+          yPercent: 0,
+          ease: "none",
           duration: 1,
-        })
-        .to(
-          slide1,
-          {
-            opacity: 0,
-            scale: 0.88,
-            ease: "power2.inOut",
-            duration: 0.6,
-          },
-          "<"
-        )
-        .to(
-          slide3,
-          {
-            yPercent: 0,
-            ease: "power2.inOut",
-            duration: 1,
-          },
-          "<"
-        )
-        .to({}, { duration: 0.4 });
+        },
+        "<"
+      )
+      .set(slide2, { autoAlpha: 0 });
 
       projectsScrollTrigger = tl.scrollTrigger;
     },
@@ -145,102 +126,41 @@ function initFullscreenProjectsGSAP() {
       if (mobileHeader) {
         gsap.fromTo(
           mobileHeader,
-          { opacity: 0, y: -25 },
+          { opacity: 0, y: -20 },
           {
             scrollTrigger: {
               trigger: mobileHeader,
-              start: "top 90%",
-              toggleActions: "play none none reverse",
+              start: "top 92%",
+              once: true,
             },
             opacity: 1,
             y: 0,
-            duration: 0.6,
+            duration: 0.5,
             ease: "power2.out",
+            clearProps: "transform",
           }
         );
       }
 
+      // Animasi kartu tunggal ringan dengan once: true untuk performa 60-120fps mobile murni
       const slides = gsap.utils.toArray(".project-fullscreen-panel");
       slides.forEach((slide) => {
-        const tlMobile = gsap.timeline({
-          scrollTrigger: {
-            trigger: slide,
-            start: "top 88%",
-            toggleActions: "play none none reverse",
-          },
-        });
-
-        tlMobile.fromTo(
+        gsap.fromTo(
           slide,
-          { opacity: 0, y: 40, scale: 0.95 },
+          { opacity: 0, y: 25 },
           {
+            scrollTrigger: {
+              trigger: slide,
+              start: "top 90%",
+              once: true,
+            },
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: 0.65,
-            ease: "power3.out",
+            duration: 0.45,
+            ease: "power2.out",
+            clearProps: "transform",
           }
         );
-
-        const visualCard = slide.querySelector(".panel-visual-card");
-        if (visualCard) {
-          tlMobile.fromTo(
-            visualCard,
-            { opacity: 0, scale: 0.92 },
-            { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.5)" },
-            "-=0.35"
-          );
-        }
-
-        const title = slide.querySelector(".panel-project-title");
-        if (title) {
-          tlMobile.fromTo(
-            title,
-            { opacity: 0, x: -18 },
-            { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" },
-            "-=0.3"
-          );
-        }
-
-        const features = slide.querySelectorAll(".panel-feat-item");
-        if (features.length > 0) {
-          tlMobile.fromTo(
-            features,
-            { opacity: 0, x: -12 },
-            { opacity: 1, x: 0, stagger: 0.06, duration: 0.3, ease: "power2.out" },
-            "-=0.25"
-          );
-        }
-
-        const tags = slide.querySelectorAll(".tech-tag");
-        if (tags.length > 0) {
-          tlMobile.fromTo(
-            tags,
-            { opacity: 0, scale: 0.75 },
-            { opacity: 1, scale: 1, stagger: 0.04, duration: 0.3, ease: "back.out(2)" },
-            "-=0.2"
-          );
-        }
-
-        const cta = slide.querySelector(".panel-cta-actions");
-        if (cta) {
-          tlMobile.fromTo(
-            cta,
-            { opacity: 0, y: 15 },
-            { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" },
-            "-=0.2"
-          );
-        }
-
-        const hookCard = slide.querySelector(".archive-hook-card");
-        if (hookCard) {
-          tlMobile.fromTo(
-            hookCard.children,
-            { opacity: 0, y: 18 },
-            { opacity: 1, y: 0, stagger: 0.08, duration: 0.4, ease: "power2.out" },
-            "-=0.3"
-          );
-        }
       });
     },
   });
@@ -255,11 +175,9 @@ function jumpToProjectSlide(index) {
 
   const st = projectsScrollTrigger || ScrollTrigger.getById("projects-pin");
   if (st && window.innerWidth >= 992) {
-    let scrollPos = st.start;
-    if (index === 0) scrollPos = st.start + 2;
-    else if (index === 1) scrollPos = st.start + (st.end - st.start) * 0.38;
-    else if (index === 2) scrollPos = st.start + (st.end - st.start) * 0.70;
-    else if (index === 3) scrollPos = st.start + (st.end - st.start) * 0.96;
+    const progressMap = [0.01, 0.36, 0.69, 0.98];
+    const targetProgress = progressMap[index] ?? 0;
+    const scrollPos = st.start + (st.end - st.start) * targetProgress;
     window.scrollTo({ top: scrollPos, behavior: "smooth" });
   } else {
     const slide = document.getElementById(`project-slide-${index}`);
