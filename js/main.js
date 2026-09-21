@@ -4,17 +4,15 @@
  * skills matrix, mini console CLI, font accessibility, dan form kontak.
  */
 
-function startPortfolioApp() {
-  if (typeof AOS !== "undefined") {
-    AOS.init({
-      duration: 700,
-      once: true,
-      mirror: false,
-      offset: 30,
-      easing: "ease-out-cubic",
-    });
-  }
+const phrases = ["CYBER SECURITY SPECIALIST", "WEB DEVELOPER", "SYSTEM SECURITY ANALYST"];
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typeSpeed = 120;
+let isConsoleMinimized = false;
 
+function startPortfolioApp() {
+  initGsapAnimations();
   initTypewriter();
   if (typeof initFullscreenProjectsGSAP === "function") {
     initFullscreenProjectsGSAP();
@@ -26,6 +24,147 @@ function startPortfolioApp() {
   }
   initSkillsMatrixAnimation();
   initModalScrollLock();
+}
+
+function initGsapAnimations() {
+  if (typeof gsap === "undefined") return;
+
+  if (typeof ScrollTrigger !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+
+  // Hero section entrance animation
+  const heroTl = gsap.timeline({ defaults: { ease: "power2.out", duration: 0.7 } });
+
+  heroTl
+    .from(".hero-image-wrapper", {
+      opacity: 0,
+      scale: 0.9,
+      duration: 0.8,
+    })
+    .from(
+      ".hero-title",
+      {
+        opacity: 0,
+        x: -25,
+        duration: 0.6,
+      },
+      "-=0.4"
+    )
+    .from(
+      ".hero-subtitle",
+      {
+        opacity: 0,
+        x: -20,
+        duration: 0.5,
+      },
+      "-=0.3"
+    )
+    .from(
+      ".hero-lead-text",
+      {
+        opacity: 0,
+        x: -15,
+        duration: 0.5,
+      },
+      "-=0.3"
+    )
+    .from(
+      ".char-stats-box",
+      {
+        opacity: 0,
+        y: 20,
+        scale: 0.98,
+        duration: 0.6,
+      },
+      "-=0.3"
+    )
+    .from(
+      ".hero-social .social-chip",
+      {
+        opacity: 0,
+        y: 10,
+        stagger: 0.08,
+        duration: 0.4,
+      },
+      "-=0.3"
+    )
+    .from(
+      ".hero-buttons .btn",
+      {
+        opacity: 0,
+        scale: 0.92,
+        stagger: 0.1,
+        duration: 0.4,
+      },
+      "-=0.3"
+    );
+
+  if (typeof ScrollTrigger !== "undefined") {
+    // Techstacks reveal
+    gsap.from(".techstack-title, .techstack-subtitle", {
+      scrollTrigger: {
+        trigger: ".techstack-title",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      y: 25,
+      stagger: 0.12,
+      duration: 0.6,
+      ease: "power2.out",
+    });
+
+    gsap.from(".techstack-showcase", {
+      scrollTrigger: {
+        trigger: ".techstack-showcase",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      scale: 0.96,
+      y: 20,
+      duration: 0.6,
+      ease: "power2.out",
+    });
+
+    gsap.from(".skill-quote-box", {
+      scrollTrigger: {
+        trigger: ".skill-quote-box",
+        start: "top 88%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      y: 20,
+      duration: 0.55,
+      ease: "power2.out",
+    });
+
+    // Contact section reveal
+    gsap.from(".contact-container .col-lg-5", {
+      scrollTrigger: {
+        trigger: ".contact-container",
+        start: "top 82%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      x: -30,
+      duration: 0.7,
+      ease: "power2.out",
+    });
+
+    gsap.from(".contact-container .col-lg-7", {
+      scrollTrigger: {
+        trigger: ".contact-container",
+        start: "top 82%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      x: 30,
+      duration: 0.7,
+      ease: "power2.out",
+    });
+  }
 }
 
 function initSkillsMatrixAnimation() {
@@ -67,17 +206,7 @@ function initChatbot() {
   initTerminalConsole();
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", startPortfolioApp);
-} else {
-  startPortfolioApp();
-}
 
-const phrases = ["CYBER SECURITY SPECIALIST", "WEB DEVELOPER", "SYSTEM SECURITY ANALYST"];
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typeSpeed = 120;
 
 function initTypewriter() {
   const el = document.getElementById("typing-text");
@@ -111,7 +240,6 @@ function initTypewriter() {
   setTimeout(typeStep, 600);
 }
 
-let isConsoleMinimized = false;
 
 function initTerminalConsole() {
   const input = document.getElementById("cli-input");
@@ -440,9 +568,34 @@ function changeFontSize(scale) {
   if (options) options.classList.remove("show");
 }
 
+let sweetAlertPromise = null;
+function loadSweetAlert() {
+  if (typeof window.Swal !== "undefined") {
+    return Promise.resolve(window.Swal);
+  }
+  if (!sweetAlertPromise) {
+    sweetAlertPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+      script.onload = () => resolve(window.Swal);
+      script.onerror = (err) => {
+        sweetAlertPromise = null;
+        reject(err);
+      };
+      document.head.appendChild(script);
+    });
+  }
+  return sweetAlertPromise;
+}
+
 const contactForm = document.getElementById("contact-form");
 if (contactForm) {
-  contactForm.addEventListener("submit", function (e) {
+  // Prefetch SweetAlert saat user mulai fokus/interaksi di form agar tidak ada lag saat submit
+  contactForm.addEventListener("focusin", () => {
+    loadSweetAlert().catch(() => {});
+  }, { once: true });
+
+  contactForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const name = document.getElementById("user-name").value.trim();
@@ -451,8 +604,17 @@ if (contactForm) {
     const details = document.getElementById("project-details").value.trim();
     const myPhone = "6282247846546";
 
+    let SwalInstance;
+    try {
+      SwalInstance = await loadSweetAlert();
+    } catch (err) {
+      console.error("SweetAlert load error:", err);
+      alert("Harap isi nama, email, dan rincian pesan Anda dengan lengkap.");
+      return;
+    }
+
     if (!name || !email || !details) {
-      Swal.fire({
+      SwalInstance.fire({
         icon: "error",
         title: "> ACCESS DENIED",
         text: "Harap isi nama, email, dan rincian pesan Anda dengan lengkap.",
@@ -466,7 +628,7 @@ if (contactForm) {
       return;
     }
 
-    Swal.fire({
+    SwalInstance.fire({
       title: "> ENCRYPTING PACKETS...",
       html: `
         <div style="color: #00f3ff; font-family: 'JetBrains Mono', monospace; text-align: left; font-size: 0.85rem">
@@ -480,10 +642,10 @@ if (contactForm) {
       allowOutsideClick: false,
       timer: 1100,
       didOpen: () => {
-        Swal.showLoading();
+        SwalInstance.showLoading();
       },
     }).then(() => {
-      Swal.fire({
+      SwalInstance.fire({
         icon: "success",
         title: "> TRANSMISSION READY",
         html: `
@@ -628,4 +790,10 @@ if (typeof window !== "undefined") {
   window.changeFontSize = changeFontSize;
   window.initChatbot = initTerminalConsole;
   window.toggleChatWidget = toggleConsole;
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", startPortfolioApp);
+} else {
+  startPortfolioApp();
 }
