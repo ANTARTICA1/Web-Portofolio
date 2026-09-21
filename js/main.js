@@ -80,12 +80,13 @@ function initGsapAnimations() {
       "-=0.3"
     )
     .from(
-      ".hero-social .social-chip",
+      "#home .hero-social .social-icon-btn",
       {
         opacity: 0,
         y: 10,
         stagger: 0.08,
         duration: 0.4,
+        clearProps: "all",
       },
       "-=0.3"
     )
@@ -151,6 +152,23 @@ function initGsapAnimations() {
       x: -30,
       duration: 0.7,
       ease: "power2.out",
+    });
+
+    // Contact social icons reveal (initially hidden, revealed sequentially on scroll)
+    gsap.from(".contact-social-icons .social-icon-btn", {
+      scrollTrigger: {
+        trigger: ".contact-social-icons",
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      scale: 0.65,
+      x: -18,
+      stagger: 0.1,
+      duration: 0.5,
+      delay: 0.2,
+      ease: "power2.out",
+      clearProps: "all",
     });
 
     gsap.from(".contact-container .col-lg-7", {

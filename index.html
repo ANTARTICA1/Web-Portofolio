@@ -105,15 +105,15 @@
               </div>
             </div>
 
-            <div class="hero-social mb-4">
-              <a href="https://github.com/ANTARTICA1" target="_blank" rel="noopener noreferrer" class="social-chip" title="GitHub">
-                <i class="fab fa-github"></i> <span>GitHub</span>
+            <div class="hero-social mb-4 d-flex align-items-center gap-3 justify-content-center justify-content-lg-start">
+              <a href="https://github.com/ANTARTICA1" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-github" title="GitHub" aria-label="GitHub">
+                <i class="fab fa-github"></i>
               </a>
-              <a href="https://www.linkedin.com/in/krisnaartha/" target="_blank" rel="noopener noreferrer" class="social-chip" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+              <a href="https://www.linkedin.com/in/krisnaartha/" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-linkedin" title="LinkedIn" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
               </a>
-              <a href="https://www.instagram.com/gungkrisnaa._/" target="_blank" rel="noopener noreferrer" class="social-chip" title="Instagram">
-                <i class="fab fa-instagram"></i> <span>Instagram</span>
+              <a href="https://www.instagram.com/gungkrisnaa._/" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-instagram" title="Instagram" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
               </a>
             </div>
 
@@ -686,41 +686,58 @@
                 </div>
               </div>
 
-              <div>
-                <h6 class="mb-2 font-mono small" style="letter-spacing: 1.5px; font-size: 0.75rem; color: #cbd5e1;">FOLLOW MY CHANNELS</h6>
-                <div class="hero-social">
-                  <a href="https://github.com/ANTARTICA1" target="_blank" rel="noopener noreferrer" class="me-2 social-chip"><i class="fab fa-github"></i> GitHub</a>
-                  <a href="https://www.linkedin.com/in/krisnaartha/" target="_blank" rel="noopener noreferrer" class="me-2 social-chip"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                  <a href="https://www.instagram.com/gungkrisnaa._/" target="_blank" rel="noopener noreferrer" class="social-chip"><i class="fab fa-instagram"></i> Instagram</a>
+              <div class="mt-4 pt-2">
+                <h6 class="mb-3 font-mono small text-uppercase" style="letter-spacing: 1.5px; font-size: 0.75rem; color: #94a3b8;">FOLLOW MY CHANNELS</h6>
+                <div class="contact-social-icons d-flex align-items-center gap-3">
+                  <a href="https://github.com/ANTARTICA1" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-github" title="GitHub" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/in/krisnaartha/" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-linkedin" title="LinkedIn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                  <a href="https://www.instagram.com/gungkrisnaa._/" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-instagram" title="Instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a>
                 </div>
               </div>
             </div>
 
             <div class="col-lg-7">
               <form id="contact-form" class="cyber-form" novalidate>
-                <div class="form-header mb-3">
-                  <h5 class="text-white fw-bold mb-1 form-title-text">Send Direct Message</h5>
-                  <p class="small mb-0 form-subtitle-text" style="color: #cbd5e1;">Pesan Anda akan otomatis terenkripsi dan diteruskan langsung ke WhatsApp prioritas saya.</p>
+                <div class="form-header mb-4">
+                  <h5 class="text-white fw-bold mb-0 form-title-text">Send Direct Message</h5>
                 </div>
 
-                <div class="row g-2 g-md-3">
+                <div class="row g-3 g-md-4">
                   <div class="col-md-6">
                     <label for="user-name" class="cyber-form-label font-mono">Nama Anda <span class="text-danger">*</span></label>
-                    <input type="text" id="user-name" class="form-control-cyber w-100" placeholder="Misal: Budi Pratama" required />
+                    <div class="cyber-input-wrap">
+                      <input type="text" id="user-name" class="form-control-cyber" placeholder="Misal: Budi Pratama" required />
+                      <i class="fas fa-user cyber-input-icon"></i>
+                    </div>
                   </div>
                   <div class="col-md-6">
                     <label for="user-email" class="cyber-form-label font-mono">Email Anda <span class="text-danger">*</span></label>
-                    <input type="email" id="user-email" class="form-control-cyber w-100" placeholder="nama@perusahaan.com" required />
+                    <div class="cyber-input-wrap">
+                      <input type="email" id="user-email" class="form-control-cyber" placeholder="nama@perusahaan.com" required />
+                      <i class="fas fa-envelope cyber-input-icon"></i>
+                    </div>
                   </div>
                   <div class="col-12">
                     <label for="project-subject" class="cyber-form-label font-mono">Subjek / Keperluan</label>
-                    <input type="text" id="project-subject" class="form-control-cyber w-100" placeholder="Tawaran Project, Konsultasi, atau Rekrutmen" />
+                    <div class="cyber-input-wrap">
+                      <input type="text" id="project-subject" class="form-control-cyber" placeholder="Tawaran Project, Konsultasi, atau Rekrutmen" />
+                      <i class="fas fa-tag cyber-input-icon"></i>
+                    </div>
                   </div>
                   <div class="col-12">
                     <label for="project-details" class="cyber-form-label font-mono">Rincian Pesan <span class="text-danger">*</span></label>
-                    <textarea id="project-details" class="form-control-cyber w-100" rows="3" placeholder="Ceritakan ringkasan ide proyek, waktu pengerjaan, atau pertanyaan Anda..." required></textarea>
+                    <div class="cyber-input-wrap">
+                      <textarea id="project-details" class="form-control-cyber" rows="2" placeholder="Ceritakan ringkasan ide proyek, waktu pengerjaan, atau pertanyaan Anda..." required></textarea>
+                      <i class="fas fa-comment-dots cyber-input-icon"></i>
+                    </div>
                   </div>
-                  <div class="col-12 d-flex gap-2 pt-2">
+                  <div class="col-12 d-flex gap-2 pt-3">
                     <button type="submit" class="btn-send flex-grow-1"><i class="fas fa-paper-plane me-2"></i> KIRIM PESAN SEKARANG</button>
                     <button type="reset" id="reset-btn" class="btn-reset-cyber" title="Reset Formulir"><i class="fas fa-rotate-left"></i></button>
                   </div>
@@ -737,6 +754,17 @@
 
     <footer>
       <div class="container text-center">
+        <div class="footer-socials d-flex justify-content-center align-items-center gap-3 mb-3">
+          <a href="https://github.com/ANTARTICA1" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-icon-sm social-github" title="GitHub" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/krisnaartha/" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-icon-sm social-linkedin" title="LinkedIn" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://www.instagram.com/gungkrisnaa._/" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-icon-sm social-instagram" title="Instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
         <p class="mb-0 small font-mono" style="color: #cbd5e1;">© 2026 Anak Agung Ngurah Krisna Artha Wibawa. All rights reserved.</p>
       </div>
 
