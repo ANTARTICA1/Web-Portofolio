@@ -1,12 +1,16 @@
 /**
  * Logika dan Interaksi Modul Proyek
- * Mengatur pinning GSAP fullscreen slide, modal detail spesifikasi,
- * serta rendering grid kartu katalog semua proyek.
+ * Mengatur Stacking Cards Animation (Animasi Tumpuk) Fullscreen untuk Desktop,
+ * Mobile Touch-Swipe Carousel, Modal Detail Spesifikasi,
+ * serta Filter Katalog Lengkap Repositori.
  */
 
 let projectsScrollTrigger = null;
 
 function initFullscreenProjectsGSAP() {
+  // Selalu inisialisasi observer swipe mobile
+  initMobileCarouselObserver();
+
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
     return;
   }
@@ -14,12 +18,12 @@ function initFullscreenProjectsGSAP() {
   gsap.registerPlugin(ScrollTrigger);
 
   ScrollTrigger.matchMedia({
+    // Desktop: Animasi Tumpuk Kartu Fullscreen (Hardware Accelerated 120 FPS)
     "(min-width: 992px)": function () {
       const pinWrapper = document.getElementById("projects-pin-wrapper");
       if (!pinWrapper) return;
 
       const dots = document.querySelectorAll(".slide-indicator-dot");
-      const counterText = document.getElementById("projectsActiveCounterText");
       const slide0 = document.getElementById("project-slide-0");
       const slide1 = document.getElementById("project-slide-1");
       const slide2 = document.getElementById("project-slide-2");
@@ -27,141 +31,66 @@ function initFullscreenProjectsGSAP() {
 
       if (!slide0 || !slide1 || !slide2 || !slide3) return;
 
-      gsap.set(slide0, { yPercent: 0, scale: 1, opacity: 1, autoAlpha: 1, zIndex: 1, force3D: true });
-      gsap.set(slide1, { yPercent: 100, scale: 1, opacity: 1, autoAlpha: 1, zIndex: 2, force3D: true });
-      gsap.set(slide2, { yPercent: 100, scale: 1, opacity: 1, autoAlpha: 1, zIndex: 3, force3D: true });
-      gsap.set(slide3, { yPercent: 100, scale: 1, opacity: 1, autoAlpha: 1, zIndex: 4, force3D: true });
+      // Inisialisasi posisi layer: slide 0 terlihat, slide 1-3 di bawah siap menumpuk
+      gsap.set(slide0, { yPercent: 0, autoAlpha: 1, zIndex: 1, force3D: true });
+      gsap.set(slide1, { yPercent: 100, autoAlpha: 1, zIndex: 2, force3D: true });
+      gsap.set(slide2, { yPercent: 100, autoAlpha: 1, zIndex: 3, force3D: true });
+      gsap.set(slide3, { yPercent: 100, autoAlpha: 1, zIndex: 4, force3D: true });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: "#projects",
           pin: "#projects-pin-wrapper",
           start: "top top",
-          end: "+=2400",
-          scrub: 0.4,
-          anticipatePin: 0,
+          end: "+=2200",
+          scrub: 0.3,
+          anticipatePin: 1,
           id: "projects-pin",
           onUpdate: (self) => {
             const p = self.progress;
-
             dots.forEach((d) => d.classList.remove("active"));
-            if (p < 0.25) {
+            if (p < 0.28) {
               dots[0]?.classList.add("active");
-              if (counterText) counterText.textContent = "PROJECT 01 / 04";
-            } else if (p < 0.58) {
+            } else if (p < 0.62) {
               dots[1]?.classList.add("active");
-              if (counterText) counterText.textContent = "PROJECT 02 / 04";
-            } else if (p < 0.88) {
+            } else if (p < 0.90) {
               dots[2]?.classList.add("active");
-              if (counterText) counterText.textContent = "PROJECT 03 / 04";
             } else {
               dots[3]?.classList.add("active");
-              if (counterText) counterText.textContent = "ARCHIVE & REPO // 04";
             }
           },
         },
       });
 
-      // Transisi 01 -> 02: pergerakan linier, 1:1 terhadap scroll jari/mouse
-      tl.to(slide0, {
-        scale: 0.96,
-        opacity: 0.3,
+      // Pure GPU translateY: 120 FPS tanpa layout thrashing & anti-flicker
+      // Slide 1 menumpuk di atas Slide 0
+      tl.to(slide1, {
+        yPercent: 0,
         ease: "none",
         duration: 1,
+        force3D: true,
       })
-      .to(
-        slide1,
-        {
-          yPercent: 0,
-          ease: "none",
-          duration: 1,
-        },
-        "<"
-      )
-      .set(slide0, { autoAlpha: 0 }) // Nonaktifkan rendering slide 0 di GPU saat tertutup slide 1
-
-      // Transisi 02 -> 03
-      .to(slide1, {
-        scale: 0.96,
-        opacity: 0.3,
-        ease: "none",
-        duration: 1,
-      })
-      .to(
-        slide2,
-        {
-          yPercent: 0,
-          ease: "none",
-          duration: 1,
-        },
-        "<"
-      )
-      .set(slide1, { autoAlpha: 0 }) // Nonaktifkan rendering slide 1 saat tertutup slide 2
-
-      // Transisi 03 -> 04 (Archive Hook)
+      // Slide 2 menumpuk di atas Slide 1
       .to(slide2, {
-        scale: 0.96,
-        opacity: 0.3,
+        yPercent: 0,
         ease: "none",
         duration: 1,
+        force3D: true,
       })
-      .to(
-        slide3,
-        {
-          yPercent: 0,
-          ease: "none",
-          duration: 1,
-        },
-        "<"
-      )
-      .set(slide2, { autoAlpha: 0 });
+      // Slide 3 (Archive Hook) menumpuk di atas Slide 2
+      .to(slide3, {
+        yPercent: 0,
+        ease: "none",
+        duration: 1,
+        force3D: true,
+      });
 
       projectsScrollTrigger = tl.scrollTrigger;
     },
 
+    // Mobile: Animasi kartu ringan via native swipe
     "(max-width: 991px)": function () {
       projectsScrollTrigger = null;
-
-      const mobileHeader = document.querySelector(".projects-mobile-header");
-      if (mobileHeader) {
-        gsap.fromTo(
-          mobileHeader,
-          { opacity: 0, y: -20 },
-          {
-            scrollTrigger: {
-              trigger: mobileHeader,
-              start: "top 92%",
-              once: true,
-            },
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            ease: "power2.out",
-            clearProps: "transform",
-          }
-        );
-      }
-
-      // Animasi kartu tunggal ringan dengan once: true untuk performa 60-120fps mobile murni
-      const slides = gsap.utils.toArray(".project-fullscreen-panel");
-      slides.forEach((slide) => {
-        gsap.fromTo(
-          slide,
-          { opacity: 0, y: 25 },
-          {
-            scrollTrigger: {
-              trigger: slide,
-              start: "top 90%",
-              once: true,
-            },
-            opacity: 1,
-            y: 0,
-            duration: 0.45,
-            ease: "power2.out",
-            clearProps: "transform",
-          }
-        );
-      });
     },
   });
 }
@@ -175,16 +104,73 @@ function jumpToProjectSlide(index) {
 
   const st = projectsScrollTrigger || ScrollTrigger.getById("projects-pin");
   if (st && window.innerWidth >= 992) {
-    const progressMap = [0.01, 0.36, 0.69, 0.98];
+    const progressMap = [0.01, 0.38, 0.72, 0.98];
     const targetProgress = progressMap[index] ?? 0;
     const scrollPos = st.start + (st.end - st.start) * targetProgress;
-    window.scrollTo({ top: scrollPos, behavior: "smooth" });
-  } else {
-    const slide = document.getElementById(`project-slide-${index}`);
-    if (slide) {
-      slide.scrollIntoView({ behavior: "smooth" });
+    if (window.lenis) {
+      window.lenis.scrollTo(scrollPos, { duration: 0.8 });
+    } else {
+      window.scrollTo({ top: scrollPos, behavior: "smooth" });
     }
   }
+}
+
+function scrollMobileCard(index) {
+  const track = document.getElementById("mobileCarouselTrack");
+  if (!track) return;
+  const cards = track.querySelectorAll(".mobile-carousel-card");
+  if (!cards[index]) return;
+
+  const card = cards[index];
+  const targetLeft = card.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
+  track.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+
+  updateMobileDots(index);
+}
+
+function updateMobileDots(activeIndex) {
+  const dots = document.querySelectorAll("#mobileCarouselDots .mobile-dot");
+  dots.forEach((dot, idx) => {
+    if (idx === activeIndex) {
+      dot.classList.add("active");
+    } else {
+      dot.classList.remove("active");
+    }
+  });
+}
+
+function initMobileCarouselObserver() {
+  const track = document.getElementById("mobileCarouselTrack");
+  if (!track) return;
+
+  let ticking = false;
+  track.addEventListener(
+    "scroll",
+    function () {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const cards = track.querySelectorAll(".mobile-carousel-card");
+          const trackCenter = track.scrollLeft + track.clientWidth / 2;
+          let closestIdx = 0;
+          let minDistance = Infinity;
+
+          cards.forEach((card, idx) => {
+            const cardCenter = card.offsetLeft + card.clientWidth / 2;
+            const dist = Math.abs(trackCenter - cardCenter);
+            if (dist < minDistance) {
+              minDistance = dist;
+              closestIdx = idx;
+            }
+          });
+
+          updateMobileDots(closestIdx);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
 }
 
 function openProjectModal(projectId) {
@@ -403,6 +389,11 @@ function renderProjectsArchive(category = "all", searchQuery = "") {
 
 // Window bindings untuk event handler inline HTML dan interoperabilitas
 if (typeof window !== "undefined") {
+  window.switchProject = switchProject;
+  window.prevProject = prevProject;
+  window.nextProject = nextProject;
+  window.scrollMobileCard = scrollMobileCard;
+  window.initProjectsShowcase = initProjectsShowcase;
   window.initFullscreenProjectsGSAP = initFullscreenProjectsGSAP;
   window.jumpToProjectSlide = jumpToProjectSlide;
   window.openProjectModal = openProjectModal;

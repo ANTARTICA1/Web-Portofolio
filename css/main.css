@@ -59,7 +59,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
   overflow-x: clip;
 }
@@ -1446,16 +1445,45 @@ footer {
 }
 
 #mini-console.minimized {
-  height: 44px !important;
+  width: auto !important;
+  min-width: 200px;
+  max-width: 290px;
+  height: 42px !important;
   min-height: unset;
-  max-height: 44px !important;
+  max-height: 42px !important;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  border-color: rgba(0, 243, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 12px rgba(0, 243, 255, 0.15);
+}
+
+#mini-console.minimized .console-header {
+  border-bottom: none;
+  padding: 8px 14px;
 }
 
 #mini-console.minimized .console-output-area,
 #mini-console.minimized .console-input-row {
   display: none !important;
+}
+
+@media (max-width: 768px) {
+  #mini-console {
+    right: 14px;
+    bottom: 14px;
+    max-width: calc(100vw - 28px);
+  }
+  #mini-console.minimized {
+    min-width: 175px;
+    max-width: 220px;
+    height: 38px !important;
+    max-height: 38px !important;
+    right: 14px;
+    bottom: 14px;
+  }
+  #mini-console.minimized .console-title {
+    font-size: 0.7rem;
+  }
 }
 
 @media (max-width: 991px) {

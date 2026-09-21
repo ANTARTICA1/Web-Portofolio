@@ -9,9 +9,44 @@ let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 let typeSpeed = 120;
-let isConsoleMinimized = false;
+let isConsoleMinimized = true;
+
+function initLenisSmoothScroll() {
+  if (typeof Lenis === "undefined") return;
+  // Enable on laptop & desktop mouse/trackpad for 120 FPS buttery smooth scrolling
+  if (window.innerWidth < 992) return;
+
+  try {
+    const lenis = new Lenis({
+      duration: 1.05,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.5,
+      infinite: false,
+    });
+    window.lenis = lenis;
+
+    if (typeof ScrollTrigger !== "undefined") {
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+  } catch (err) {
+    console.warn("Lenis init skipped:", err);
+  }
+}
 
 function startPortfolioApp() {
+  initLenisSmoothScroll();
   initGsapAnimations();
   initTypewriter();
   if (typeof initFullscreenProjectsGSAP === "function") {
@@ -266,16 +301,10 @@ function initTerminalConsole() {
   const toggleIcon = document.getElementById("toggle-icon");
   if (!input || !consoleEl) return;
 
-  const isMobile = window.innerWidth <= 768;
-  if (isMobile) {
-    isConsoleMinimized = true;
-    consoleEl.classList.add("minimized");
-    if (toggleIcon) toggleIcon.innerHTML = `<i class="fas fa-chevron-up small"></i>`;
-  } else {
-    isConsoleMinimized = false;
-    consoleEl.classList.remove("minimized");
-    if (toggleIcon) toggleIcon.innerHTML = `<i class="fas fa-minus small"></i>`;
-  }
+  // Minimized by default on all screens for maximum screen space & zero layout obstruction
+  isConsoleMinimized = true;
+  consoleEl.classList.add("minimized");
+  if (toggleIcon) toggleIcon.innerHTML = `<i class="fas fa-chevron-up small"></i>`;
 
   input.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
