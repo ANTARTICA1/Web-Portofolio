@@ -1,14 +1,7 @@
-/**
- * Logika dan Interaksi Modul Proyek
- * Mengatur Stacking Cards Animation (Animasi Tumpuk) Fullscreen untuk Desktop,
- * Mobile Touch-Swipe Carousel, Modal Detail Spesifikasi,
- * serta Filter Katalog Lengkap Repositori.
- */
-
 let projectsScrollTrigger = null;
 
 function initFullscreenProjectsGSAP() {
-  // Selalu inisialisasi observer swipe mobile
+
   initMobileCarouselObserver();
 
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
@@ -18,7 +11,7 @@ function initFullscreenProjectsGSAP() {
   gsap.registerPlugin(ScrollTrigger);
 
   ScrollTrigger.matchMedia({
-    // Desktop: Animasi Tumpuk Kartu Fullscreen (Hardware Accelerated 120 FPS)
+
     "(min-width: 992px)": function () {
       const pinWrapper = document.getElementById("projects-pin-wrapper");
       if (!pinWrapper) return;
@@ -31,53 +24,63 @@ function initFullscreenProjectsGSAP() {
 
       if (!slide0 || !slide1 || !slide2 || !slide3) return;
 
-      // Inisialisasi posisi layer: slide 0 terlihat, slide 1-3 di bawah siap menumpuk
       gsap.set(slide0, { yPercent: 0, autoAlpha: 1, zIndex: 1, force3D: true });
       gsap.set(slide1, { yPercent: 100, autoAlpha: 1, zIndex: 2, force3D: true });
       gsap.set(slide2, { yPercent: 100, autoAlpha: 1, zIndex: 3, force3D: true });
       gsap.set(slide3, { yPercent: 100, autoAlpha: 1, zIndex: 4, force3D: true });
 
+      let lastActiveDot = -1;
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: "#projects",
           pin: "#projects-pin-wrapper",
+          pinSpacing: true,
           start: "top top",
-          end: "+=2200",
-          scrub: 0.3,
-          anticipatePin: 1,
+          end: "+=1800",
+          scrub: 0.6,
+          anticipatePin: 0,
+          fastScrollEnd: true,
+          preventOverlaps: true,
           id: "projects-pin",
           onUpdate: (self) => {
             const p = self.progress;
-            dots.forEach((d) => d.classList.remove("active"));
+            let activeDot = 0;
             if (p < 0.28) {
-              dots[0]?.classList.add("active");
+              activeDot = 0;
             } else if (p < 0.62) {
-              dots[1]?.classList.add("active");
+              activeDot = 1;
             } else if (p < 0.90) {
-              dots[2]?.classList.add("active");
+              activeDot = 2;
             } else {
-              dots[3]?.classList.add("active");
+              activeDot = 3;
+            }
+
+            if (activeDot !== lastActiveDot) {
+              lastActiveDot = activeDot;
+              dots.forEach((d, idx) => {
+                if (idx === activeDot) d.classList.add("active");
+                else d.classList.remove("active");
+              });
             }
           },
         },
       });
 
-      // Pure GPU translateY: 120 FPS tanpa layout thrashing & anti-flicker
-      // Slide 1 menumpuk di atas Slide 0
       tl.to(slide1, {
         yPercent: 0,
         ease: "none",
         duration: 1,
         force3D: true,
       })
-      // Slide 2 menumpuk di atas Slide 1
+
       .to(slide2, {
         yPercent: 0,
         ease: "none",
         duration: 1,
         force3D: true,
       })
-      // Slide 3 (Archive Hook) menumpuk di atas Slide 2
+
       .to(slide3, {
         yPercent: 0,
         ease: "none",
@@ -88,7 +91,6 @@ function initFullscreenProjectsGSAP() {
       projectsScrollTrigger = tl.scrollTrigger;
     },
 
-    // Mobile: Animasi kartu ringan via native swipe
     "(max-width: 991px)": function () {
       projectsScrollTrigger = null;
     },
@@ -108,7 +110,7 @@ function jumpToProjectSlide(index) {
     const targetProgress = progressMap[index] ?? 0;
     const scrollPos = st.start + (st.end - st.start) * targetProgress;
     if (window.lenis) {
-      window.lenis.scrollTo(scrollPos, { duration: 0.8 });
+      window.lenis.scrollTo(scrollPos, { duration: 0.45 });
     } else {
       window.scrollTo({ top: scrollPos, behavior: "smooth" });
     }
@@ -408,7 +410,6 @@ function renderProjectsArchive(category = "all", searchQuery = "") {
   });
 }
 
-// Window bindings untuk event handler inline HTML dan interoperabilitas
 if (typeof window !== "undefined") {
   window.switchProject = switchProject;
   window.prevProject = prevProject;

@@ -1,9 +1,3 @@
-/**
- * Skrip Utama & Interaksi Umum Portofolio
- * Mengatur inisialisasi aplikasi, navigasi, animasi typewriter,
- * skills matrix, mini console CLI, font accessibility, dan form kontak.
- */
-
 const phrases = ["CYBER SECURITY SPECIALIST", "WEB DEVELOPER", "SYSTEM SECURITY ANALYST"];
 let phraseIndex = 0;
 let charIndex = 0;
@@ -11,18 +5,41 @@ let isDeleting = false;
 let typeSpeed = 120;
 let isConsoleMinimized = true;
 
+function smoothScrollTo(target) {
+  const el = typeof target === "string" ? document.querySelector(target) : target;
+  if (!el) return;
+  if (window.lenis && typeof window.lenis.scrollTo === "function") {
+    window.lenis.scrollTo(el, { duration: 0.55 });
+  } else {
+    el.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+function initSmoothAnchorLinks() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const href = this.getAttribute("href");
+      if (!href || href === "#" || href.startsWith("#!")) return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        smoothScrollTo(target);
+      }
+    });
+  });
+}
+
 function initLenisSmoothScroll() {
   if (typeof Lenis === "undefined") return;
-  // Enable on laptop & desktop mouse/trackpad for 120 FPS buttery smooth scrolling
+
   if (window.innerWidth < 992) return;
 
   try {
     const lenis = new Lenis({
-      duration: 1.05,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 0.95,
+      lerp: 0.14,
+      wheelMultiplier: 1.0,
       touchMultiplier: 1.5,
+      smoothWheel: true,
       infinite: false,
     });
     window.lenis = lenis;
@@ -45,8 +62,27 @@ function initLenisSmoothScroll() {
   }
 }
 
+function handleInitialHashScroll() {
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      setTimeout(() => {
+        if (typeof ScrollTrigger !== "undefined") {
+          ScrollTrigger.refresh();
+        }
+        smoothScrollTo(target);
+      }, 150);
+    }
+  }
+}
+
 function startPortfolioApp() {
+  if (typeof history !== "undefined" && history.scrollRestoration) {
+    history.scrollRestoration = "manual";
+  }
+
   initLenisSmoothScroll();
+  initSmoothAnchorLinks();
   initGsapAnimations();
   initTypewriter();
   if (typeof initFullscreenProjectsGSAP === "function") {
@@ -60,6 +96,7 @@ function startPortfolioApp() {
   }
   initSkillsMatrixAnimation();
   initModalScrollLock();
+  handleInitialHashScroll();
 }
 
 function initGsapAnimations() {
@@ -69,30 +106,35 @@ function initGsapAnimations() {
     gsap.registerPlugin(ScrollTrigger);
   }
 
-  // Hero section entrance animation
-  const heroTl = gsap.timeline({ defaults: { ease: "power2.out", duration: 0.7 } });
+  const heroTl = gsap.timeline({
+    defaults: { ease: "power2.out", duration: 0.5 },
+    onComplete: () => {
+      gsap.set(".hero-title, .hero-subtitle, .hero-lead-text, .char-stats-box, .hero-buttons .btn", { clearProps: "transform,opacity" });
+    },
+  });
 
   heroTl
     .from(".hero-image-wrapper", {
       opacity: 0,
-      scale: 0.9,
-      duration: 0.8,
+      scale: 0.92,
+      duration: 0.55,
+      clearProps: "opacity,scale",
     })
     .from(
       ".hero-title",
       {
         opacity: 0,
-        x: -25,
-        duration: 0.6,
+        x: -20,
+        duration: 0.45,
       },
-      "-=0.4"
+      "-=0.35"
     )
     .from(
       ".hero-subtitle",
       {
         opacity: 0,
-        x: -20,
-        duration: 0.5,
+        x: -15,
+        duration: 0.4,
       },
       "-=0.3"
     )
@@ -100,109 +142,109 @@ function initGsapAnimations() {
       ".hero-lead-text",
       {
         opacity: 0,
-        x: -15,
-        duration: 0.5,
+        x: -10,
+        duration: 0.4,
       },
-      "-=0.3"
+      "-=0.25"
     )
     .from(
       ".char-stats-box",
       {
         opacity: 0,
-        y: 20,
-        scale: 0.98,
-        duration: 0.6,
+        y: 15,
+        duration: 0.45,
       },
-      "-=0.3"
+      "-=0.25"
     )
     .from(
       "#home .hero-social .social-icon-btn",
       {
         opacity: 0,
-        y: 10,
-        stagger: 0.08,
-        duration: 0.4,
+        y: 8,
+        stagger: 0.05,
+        duration: 0.35,
         clearProps: "all",
       },
-      "-=0.3"
+      "-=0.2"
     )
     .from(
       ".hero-buttons .btn",
       {
         opacity: 0,
-        scale: 0.92,
-        stagger: 0.1,
-        duration: 0.4,
+        scale: 0.94,
+        stagger: 0.06,
+        duration: 0.35,
       },
-      "-=0.3"
+      "-=0.2"
     );
 
   if (typeof ScrollTrigger !== "undefined") {
-    // Techstacks reveal
     gsap.from(".techstack-title, .techstack-subtitle", {
       scrollTrigger: {
         trigger: ".techstack-title",
         start: "top 85%",
-        toggleActions: "play none none reverse",
+        once: true,
       },
       opacity: 0,
-      y: 25,
-      stagger: 0.12,
-      duration: 0.6,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.5,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     });
 
     gsap.from(".techstack-showcase", {
       scrollTrigger: {
         trigger: ".techstack-showcase",
         start: "top 85%",
-        toggleActions: "play none none reverse",
+        once: true,
       },
       opacity: 0,
       scale: 0.96,
-      y: 20,
-      duration: 0.6,
+      y: 15,
+      duration: 0.5,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     });
 
     gsap.from(".skill-quote-box", {
       scrollTrigger: {
         trigger: ".skill-quote-box",
         start: "top 88%",
-        toggleActions: "play none none reverse",
+        once: true,
       },
       opacity: 0,
-      y: 20,
-      duration: 0.55,
+      y: 15,
+      duration: 0.45,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     });
 
-    // Contact section reveal
     gsap.from(".contact-container .col-lg-5", {
       scrollTrigger: {
         trigger: ".contact-container",
         start: "top 82%",
-        toggleActions: "play none none reverse",
+        once: true,
       },
       opacity: 0,
-      x: -30,
-      duration: 0.7,
+      x: -25,
+      duration: 0.55,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     });
 
-    // Contact social icons reveal (initially hidden, revealed sequentially on scroll)
     gsap.from(".contact-social-icons .social-icon-btn", {
       scrollTrigger: {
         trigger: ".contact-social-icons",
         start: "top 90%",
-        toggleActions: "play none none reverse",
+        once: true,
       },
       opacity: 0,
-      scale: 0.65,
-      x: -18,
-      stagger: 0.1,
-      duration: 0.5,
-      delay: 0.2,
+      scale: 0.7,
+      x: -15,
+      stagger: 0.08,
+      duration: 0.4,
+      delay: 0.15,
       ease: "power2.out",
       clearProps: "all",
     });
@@ -211,12 +253,13 @@ function initGsapAnimations() {
       scrollTrigger: {
         trigger: ".contact-container",
         start: "top 82%",
-        toggleActions: "play none none reverse",
+        once: true,
       },
       opacity: 0,
-      x: 30,
-      duration: 0.7,
+      x: 25,
+      duration: 0.55,
       ease: "power2.out",
+      clearProps: "transform,opacity",
     });
   }
 }
@@ -260,8 +303,6 @@ function initChatbot() {
   initTerminalConsole();
 }
 
-
-
 function initTypewriter() {
   const el = document.getElementById("typing-text");
   if (!el) return;
@@ -294,14 +335,12 @@ function initTypewriter() {
   setTimeout(typeStep, 600);
 }
 
-
 function initTerminalConsole() {
   const input = document.getElementById("cli-input");
   const consoleEl = document.getElementById("mini-console");
   const toggleIcon = document.getElementById("toggle-icon");
   if (!input || !consoleEl) return;
 
-  // Minimized by default on all screens for maximum screen space & zero layout obstruction
   isConsoleMinimized = true;
   consoleEl.classList.add("minimized");
   if (toggleIcon) toggleIcon.innerHTML = `<i class="fas fa-chevron-up small"></i>`;
@@ -405,7 +444,7 @@ function handleTerminalCommand(rawCmd) {
 
     case "home":
     case "top":
-      document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+      smoothScrollTo("#home");
       printTermLine("> [NAVIGATING] Mengalihkan ke bagian Home...", "term-line-green");
       break;
 
@@ -413,7 +452,7 @@ function handleTerminalCommand(rawCmd) {
     case "skill":
     case "stack":
     case "techstack":
-      document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+      smoothScrollTo("#skills");
       printTermLine("[TECH STACK & TOOLS KRISNA ARTHA WIBAWA]:", "term-line-cyan");
       printTermLine("   Network Security : Wireshark, Firewall, Nmap, IDS/IPS");
       printTermLine("   Pentesting       : Kali Linux, Burp Suite, Metasploit, OWASP");
@@ -426,7 +465,7 @@ function handleTerminalCommand(rawCmd) {
 
     case "projects":
     case "project":
-      document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+      smoothScrollTo("#projects");
       printTermLine("[9 PROYEK ASLI & TERVERIFIKASI]:", "term-line-cyan");
       printTermLine("  1. <span class='term-cmd-link' onclick='openProjectModal(0)'>[OPEN] Tatagih (Smart Subscription & AI Assistant)</span>", "term-line-green");
       printTermLine("  2. <span class='term-cmd-link' onclick='openProjectModal(1)'>[OPEN] SIGAP (Mobile Anti-Theft Security & Alarm)</span>", "term-line-green");
@@ -517,7 +556,7 @@ function handleTerminalCommand(rawCmd) {
     case "contact":
     case "wa":
     case "whatsapp":
-      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      smoothScrollTo("#contact");
       printTermLine("[JALUR KOMUNIKASI & REKRUTMEN]:", "term-line-cyan");
       printTermLine("  📧 Email    : anakagungarthawibawa22@gmail.com");
       printTermLine("  💬 Discord  : gekaaa");
@@ -652,7 +691,7 @@ function loadSweetAlert() {
 
 const contactForm = document.getElementById("contact-form");
 if (contactForm) {
-  // Prefetch SweetAlert saat user mulai fokus/interaksi di form agar tidak ada lag saat submit
+
   contactForm.addEventListener("focusin", () => {
     loadSweetAlert().catch(() => {});
   }, { once: true });
@@ -733,7 +772,7 @@ if (contactForm) {
 function initModalScrollLock() {
   const modals = document.querySelectorAll(".modal");
   modals.forEach((modal) => {
-    // Teruskan scroll roda mouse / trackpad 2 jari jika kursor berada di header/footer modal ke modal-body
+
     modal.addEventListener(
       "wheel",
       (e) => {
@@ -748,7 +787,7 @@ function initModalScrollLock() {
     );
 
     modal.addEventListener("show.bs.modal", () => {
-      // Hentikan Lenis agar tidak mencegat scroll 2 jari / wheel pada trackpad
+
       if (window.lenis && typeof window.lenis.stop === "function") {
         window.lenis.stop();
       }
@@ -773,7 +812,6 @@ function initModalScrollLock() {
           const fontWidget = document.querySelector(".accessibility-wrapper");
           if (fontWidget) fontWidget.style.removeProperty("display");
 
-          // Jalankan kembali Lenis saat semua modal tertutup
           if (window.lenis && typeof window.lenis.start === "function") {
             window.lenis.start();
           }
@@ -783,13 +821,28 @@ function initModalScrollLock() {
   });
 }
 
-// Window bindings untuk event listener inline di HTML
 if (typeof window !== "undefined") {
   window.toggleConsole = toggleConsole;
   window.toggleFontOptions = toggleFontOptions;
   window.changeFontSize = changeFontSize;
   window.initChatbot = initTerminalConsole;
   window.toggleChatWidget = toggleConsole;
+}
+
+if (typeof window !== "undefined") {
+  window.addEventListener("load", () => {
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.refresh();
+    }
+  });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.refresh();
+      }
+    });
+  }
 }
 
 if (document.readyState === "loading") {

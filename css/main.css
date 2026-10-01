@@ -1,4 +1,3 @@
-
 :root, [data-bs-theme="dark"], body {
   --bg-primary: #070a13;
   --bg-secondary: #0c1222;
@@ -73,6 +72,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -122,12 +134,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-custom {
-  background: rgba(7, 10, 19, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(7, 10, 19, 0.96);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-bottom: 1px solid var(--border-glass);
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   padding: 14px 0;
 }
 
@@ -175,7 +187,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.95rem;
   padding: 8px 16px;
   border-radius: 8px;
-  transition: all 0.25s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
   position: relative;
 }
 
@@ -196,7 +208,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 8px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-nav-hire i {
@@ -237,7 +249,8 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
   padding: 80px 0 60px;
-  background: transparent;
+  background: #07090e;
+  z-index: 1;
 }
 
 .hero-section::before {
@@ -253,6 +266,7 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
   z-index: 0;
   transform: translateZ(0);
+  contain: strict;
 }
 
 .float-icon {
@@ -265,26 +279,27 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1;
   will-change: transform;
   transform: translateZ(0);
+  contain: layout style paint;
 }
 
 @keyframes floatAround {
   0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
   33% {
-    transform: translate(18px, -24px) rotate(8deg);
+    transform: translate3d(18px, -24px, 0) rotate(8deg);
   }
   66% {
-    transform: translate(-14px, 16px) rotate(-8deg);
+    transform: translate3d(-14px, 16px, 0) rotate(-8deg);
   }
 }
 
 @keyframes floatMobile {
   0%, 100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translate3d(0, -8px, 0);
   }
 }
 
@@ -407,11 +422,12 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 10;
   pointer-events: none;
   animation: profileScanlinePass 1.2s cubic-bezier(0.25, 0.8, 0.35, 1) 0.1s forwards;
+  will-change: transform, opacity;
 }
 
 @keyframes profileScanlinePass {
   0% {
-    top: 6%;
+    transform: translateY(18px);
     opacity: 0;
   }
   20% {
@@ -421,7 +437,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0.9;
   }
   100% {
-    top: 94%;
+    transform: translateY(300px);
     opacity: 0;
   }
 }
@@ -492,9 +508,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: width 1s ease-in-out;
 }
 
-/* ==========================================================================
-   Real Brand Social Logos - Pure Boxless Icons (Hero, Contact, Footer)
-   ========================================================================== */
 .hero-social,
 .contact-social-icons {
   display: flex;
@@ -532,7 +545,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.25rem;
 }
 
-/* 1. Real GitHub Brand Logo */
 .social-github i {
   color: #e2e8f0 !important;
 }
@@ -542,7 +554,6 @@ h1, h2, h3, h4, h5, h6 {
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
 }
 
-/* 2. Real LinkedIn Brand Logo */
 .social-linkedin i {
   color: #0a66c2 !important;
 }
@@ -552,7 +563,6 @@ h1, h2, h3, h4, h5, h6 {
   filter: drop-shadow(0 0 8px rgba(10, 102, 194, 0.6));
 }
 
-/* 3. Real Instagram Brand Logo (Authentic Instagram Gradient) */
 .social-instagram i {
   background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
@@ -578,7 +588,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: 1px;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
 }
 
 .btn-neon:hover {
@@ -595,7 +605,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   letter-spacing: 1px;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .btn-outline-cyber:hover {
@@ -633,6 +643,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #080c16;
   background-image: radial-gradient(rgba(0, 243, 255, 0.08) 1px, transparent 1px);
   background-size: 20px 20px;
+  z-index: 2;
 }
 
 .skill-cyber-backdrop {
@@ -773,10 +784,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 36px auto 0;
   padding: 14px 24px 12px;
   border-radius: 12px;
-  background: rgba(10, 16, 28, 0.7);
+  background: rgba(10, 16, 28, 0.94);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   text-align: center;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
 }
@@ -893,8 +904,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-
-
 .contact-section {
   padding: 70px 0 60px;
   position: relative;
@@ -902,6 +911,7 @@ h1, h2, h3, h4, h5, h6 {
   background-image:
     radial-gradient(ellipse 80% 280px at 50% 0%, rgba(0, 243, 255, 0.04), transparent 75%),
     radial-gradient(ellipse 60% 400px at 80% 30%, rgba(139, 92, 246, 0.035), transparent 70%);
+  z-index: 5;
 }
 
 .contact-section::before {
@@ -939,7 +949,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact-link-row {
   padding: 10px 4px 14px;
   border-radius: 0;
-  transition: all 0.25s ease;
+  transition: border-bottom-color 0.2s ease, transform 0.2s ease;
   color: var(--text-main);
   background: transparent;
   border: none;
@@ -968,7 +978,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
   flex-shrink: 0;
 }
 
@@ -1080,7 +1090,7 @@ h1, h2, h3, h4, h5, h6 {
   color: rgba(255, 255, 255, 0.45);
   font-size: 0.95rem;
   pointer-events: none;
-  transition: all 0.25s ease;
+  transition: color 0.25s ease, filter 0.25s ease;
 }
 
 textarea.form-control-cyber {
@@ -1114,7 +1124,7 @@ textarea.form-control-cyber ~ .cyber-input-icon {
   font-size: 0.86rem;
   letter-spacing: 1px;
   border-radius: 10px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, box-shadow 0.25s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1150,7 +1160,7 @@ textarea.form-control-cyber ~ .cyber-input-icon {
   align-items: center;
   justify-content: center;
   font-size: 0.95rem;
-  transition: all 0.25s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
   cursor: pointer;
 }
 
@@ -1179,7 +1189,7 @@ footer {
   font-size: 0.92rem;
   display: block;
   margin-bottom: 10px;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, padding-left 0.2s ease;
 }
 
 .footer-link:hover {
@@ -1219,7 +1229,7 @@ footer {
   justify-content: center;
   align-items: center;
   font-size: 0.95rem;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .main-btn:hover {
@@ -1248,7 +1258,7 @@ footer {
   font-weight: bold;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .font-options button:hover {
@@ -1262,16 +1272,16 @@ footer {
   right: 25px;
   width: 420px;
   max-width: calc(100vw - 30px);
-  background: rgba(6, 10, 18, 0.96);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(8, 12, 22, 0.98);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
   z-index: 9999;
   font-family: "Courier New", Courier, monospace;
   overflow: hidden;
-  transition: all 0.25s ease;
+  transition: transform 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
 }
 
 #mini-console:hover {
@@ -1329,7 +1339,7 @@ footer {
   justify-content: center;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .console-minimize-btn:hover {
@@ -1529,8 +1539,6 @@ footer {
   }
 }
 
-
-
 @media (max-width: 576px) {
   .float-icon {
     display: none !important;
@@ -1592,7 +1600,6 @@ footer {
     width: 100%;
     padding: 12px 20px;
   }
-
 
   #mini-console {
     bottom: 12px;
@@ -1659,11 +1666,8 @@ footer {
   }
 }
 
-/* Native non-blocking modal scroll lock */
 body.modal-open, html.modal-open {
   overflow: hidden !important;
   height: 100vh !important;
   touch-action: none;
 }
-
-
