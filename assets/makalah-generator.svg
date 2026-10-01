@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg-makalah" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050811"/>
+      <stop offset="50%" stop-color="#140c24"/>
+      <stop offset="100%" stop-color="#090514"/>
+    </linearGradient>
+    <radialGradient id="glow-makalah" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid-makalah" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(168, 85, 247, 0.05)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg-makalah)"/>
+  <rect width="100%" height="100%" fill="url(#grid-makalah)"/>
+  <circle cx="400" cy="200" r="180" fill="url(#glow-makalah)"/>
+  <rect x="1" y="1" width="798" height="448" rx="8" fill="none" stroke="rgba(168, 85, 247, 0.22)" stroke-width="2"/>
+
+  <!-- Icon: Academic Document & Generative AI Spark / LaTeX -->
+  <g transform="translate(400, 160)" fill="none" stroke="#a855f7" stroke-width="2">
+    <!-- Document Pages Outline -->
+    <rect x="-38" y="-30" width="56" height="64" rx="4" stroke="#a855f7" stroke-width="2" fill="rgba(168, 85, 247, 0.08)"/>
+    <path d="M -26 -16 L 4 -16" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+    <path d="M -26 -6 L 10 -6" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+    <path d="M -26 4 L 0 4" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+    <path d="M -26 14 L -6 14" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- AI Sparkle / Neural Matrix Star -->
+    <g transform="translate(24, 8)">
+      <path d="M 0 -22 L 4 -6 L 20 -2 L 4 2 L 0 18 L -4 2 L -20 -2 L -4 -6 Z" fill="#00f3ff" stroke="#00f3ff" stroke-width="1"/>
+      <circle cx="0" cy="-2" r="3" fill="#ffffff"/>
+      <!-- Small secondary sparkles -->
+      <circle cx="16" cy="-18" r="2" fill="#c084fc"/>
+      <circle cx="-14" cy="18" r="1.5" fill="#c084fc"/>
+    </g>
+
+    <!-- LaTeX Formula Node Hint -->
+    <path d="M -28 26 C -20 26, -16 32, -10 32" stroke="rgba(0, 243, 255, 0.6)" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="400" y="275" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="800" letter-spacing="2">MAKALAH GENERATOR</text>
+  <text x="400" y="308" text-anchor="middle" fill="#c084fc" font-family="'Courier New', monospace" font-size="13" font-weight="600" letter-spacing="3">GENERATIVE AI // SMART RESEARCH ASSISTANT</text>
+  <text x="400" y="330" text-anchor="middle" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">Next.js 14 • OpenAI GPT-4 • Auto-Citation (APA/IEEE) • LaTeX &amp; PDF Engine</text>
+</svg>

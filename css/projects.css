@@ -699,6 +699,189 @@ body.modal-open .project-slide-indicators {
   text-transform: uppercase;
 }
 
+/* ==========================================================================
+   SIGAP Phone Mockup Showcase (Front Display)
+   ========================================================================== */
+.sigap-phone-showcase {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+}
+
+.phone-mockup-device {
+  position: relative;
+  width: clamp(250px, 19vw, 285px);
+  height: clamp(510px, 57vh, 590px);
+  background: linear-gradient(145deg, #334155, #1e293b 40%, #0f172a 80%, #334155);
+  border-radius: 44px;
+  padding: 3.5px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.14) inset,
+    0 24px 55px -10px rgba(0, 0, 0, 0.85);
+  z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.sigap-phone-showcase:hover .phone-mockup-device {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.28) inset,
+    0 32px 70px -10px rgba(0, 0, 0, 0.95);
+}
+
+/* Hardware buttons on chassis */
+.phone-hw-btn {
+  position: absolute;
+  background: #334155;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.phone-hw-vol-up {
+  left: -5px;
+  top: 95px;
+  width: 4px;
+  height: 48px;
+  border-radius: 3px 0 0 3px;
+}
+
+.phone-hw-vol-down {
+  left: -5px;
+  top: 155px;
+  width: 4px;
+  height: 48px;
+  border-radius: 3px 0 0 3px;
+}
+
+.phone-hw-power {
+  right: -5px;
+  top: 110px;
+  width: 4px;
+  height: 68px;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Phone Inner Chassis & Bezel */
+.phone-chassis-bezel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 40px;
+  border: 7px solid #080c14;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Dynamic Island */
+.phone-island-notch {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 74px;
+  height: 20px;
+  background: #000;
+  border-radius: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.phone-lens-dot {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #1e293b 40%, #020617 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 2px rgba(56, 189, 248, 0.6);
+}
+
+/* Screen Viewport */
+.phone-screen-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #070a12;
+}
+
+.phone-screen-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Screen Glass Glare */
+.phone-glass-glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(130deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 32%, transparent 60%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Home Indicator */
+.phone-home-indicator {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 3px;
+  z-index: 10;
+}
+
+.phone-expand-btn {
+  top: 10px;
+  right: 10px;
+  z-index: 6;
+}
+
+/* Responsive adjustments for smaller laptop screens */
+@media (min-width: 992px) and (max-height: 820px) {
+  .phone-mockup-device {
+    height: 480px !important;
+    width: 235px !important;
+    border-radius: 38px !important;
+  }
+  .phone-chassis-bezel {
+    border-radius: 32px !important;
+    border-width: 6px !important;
+  }
+  .phone-island-notch {
+    width: 64px !important;
+    height: 17px !important;
+    top: 7px !important;
+  }
+  .phone-home-indicator {
+    width: 75px !important;
+    bottom: 6px !important;
+  }
+  .phone-hw-vol-up {
+    top: 80px;
+    height: 40px;
+  }
+  .phone-hw-vol-down {
+    top: 130px;
+    height: 40px;
+  }
+  .phone-hw-power {
+    top: 95px;
+    height: 55px;
+  }
+}
+
 .project-specs-list {
   display: flex;
   flex-direction: column;
@@ -1053,40 +1236,37 @@ body.modal-open .project-slide-indicators {
   color: #fff;
 }
 
-.archive-controls-bar {
-  background: rgba(12, 18, 34, 0.6);
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  padding: 14px 18px;
-}
-
 .archive-search-wrapper {
   position: relative;
+  width: 100%;
 }
 
 .archive-search-icon {
   position: absolute;
-  left: 14px;
+  left: 16px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
+  pointer-events: none;
 }
 
 .archive-search-input {
-  background: rgba(7, 10, 19, 0.8);
+  width: 100%;
+  background: rgba(14, 22, 42, 0.7);
   border: 1px solid var(--border-glass);
   color: #fff;
-  padding: 10px 14px 10px 38px;
-  border-radius: 10px;
-  font-size: 0.85rem;
+  padding: 12px 16px 12px 44px;
+  border-radius: 8px;
+  font-size: 0.88rem;
   outline: none;
   transition: all 0.25s ease;
 }
 
 .archive-search-input:focus {
   border-color: var(--primary);
-  background: rgba(10, 14, 26, 0.95);
+  background: rgba(14, 22, 42, 0.95);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
 }
 
 .archive-filter-btn {
@@ -1324,11 +1504,15 @@ body.modal-open .project-slide-indicators {
 .modal-dialog,
 .modal-content {
   overscroll-behavior: contain !important;
+  touch-action: pan-y !important;
 }
 
-.modal-body {
+.modal-body,
+.modal-dialog-scrollable .modal-body {
   overscroll-behavior: contain !important;
-  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch !important;
+  overflow-y: auto !important;
 }
 
 .cyber-modal-footer {

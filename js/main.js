@@ -415,77 +415,94 @@ function handleTerminalCommand(rawCmd) {
     case "techstack":
       document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
       printTermLine("[TECH STACK & TOOLS KRISNA ARTHA WIBAWA]:", "term-line-cyan");
-      printTermLine("  🛡️ Network Security : Wireshark, Firewall, Nmap, IDS/IPS");
-      printTermLine("  🕵️ Pentesting       : Kali Linux, Burp Suite, Metasploit, OWASP");
-      printTermLine("  🔑 API Security     : Postman, JWT, REST API, OAuth2");
-      printTermLine("  🐧 Linux Admin      : Ubuntu, Debian, Bash, Docker");
-      printTermLine("  💻 Web Fullstack    : HTML5/CSS3, JavaScript ES6, PHP, Bootstrap");
-      printTermLine("  🗄️ Database & Tools : MySQL, Git, GitHub, CI/CD");
+      printTermLine("   Network Security : Wireshark, Firewall, Nmap, IDS/IPS");
+      printTermLine("   Pentesting       : Kali Linux, Burp Suite, Metasploit, OWASP");
+      printTermLine("   API Security     : Postman, JWT, REST API, OAuth2");
+      printTermLine("   Linux Admin      : Ubuntu, Debian, Bash, Docker");
+      printTermLine("   Web Fullstack    : HTML5/CSS3, JavaScript ES6, PHP, Bootstrap");
+      printTermLine("   Database & Tools : MySQL, Git, GitHub, CI/CD");
       printTermLine("---------------------------------------------------------", "term-line-divider");
       break;
 
     case "projects":
     case "project":
       document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-      printTermLine("[7 PROYEK ASLI & TERVERIFIKASI]:", "term-line-cyan");
-      printTermLine("  1. <span class='term-cmd-link' onclick='openProjectModal(0)'>[OPEN] NeuroFly (Drosophila Connectome Pong AI)</span>", "term-line-green");
-      printTermLine("  2. <span class='term-cmd-link' onclick='openProjectModal(1)'>[OPEN] Tatagih (Subscription & Billing Manager)</span>", "term-line-green");
-      printTermLine("  3. <span class='term-cmd-link' onclick='openProjectModal(2)'>[OPEN] Lintas (Cross-Platform HP & PC Bridge)</span>", "term-line-green");
-      printTermLine("  4. <span class='term-cmd-link' onclick='openProjectModal(3)'>[OPEN] Bingkai (Photo Management Media App)</span>", "term-line-green");
-      printTermLine("  5. <span class='term-cmd-link' onclick='openProjectModal(4)'>[OPEN] Sigap (Mobile Security & Sensor Alarm)</span>", "term-line-green");
-      printTermLine("  6. <span class='term-cmd-link' onclick='openProjectModal(5)'>[OPEN] Temuin (Lost and Found Community Platform)</span>", "term-line-green");
-      printTermLine("  7. <span class='term-cmd-link' onclick='openProjectModal(6)'>[OPEN] NenaCare (K3 Incident Reporting & Gemini AI)</span>", "term-line-green");
-      printTermLine("> Tip: Ketik 'project 1' sampai 'project 7' atau 'archive' untuk membuka katalog lengkap.", "term-line-white");
+      printTermLine("[9 PROYEK ASLI & TERVERIFIKASI]:", "term-line-cyan");
+      printTermLine("  1. <span class='term-cmd-link' onclick='openProjectModal(0)'>[OPEN] Tatagih (Smart Subscription & AI Assistant)</span>", "term-line-green");
+      printTermLine("  2. <span class='term-cmd-link' onclick='openProjectModal(1)'>[OPEN] SIGAP (Mobile Anti-Theft Security & Alarm)</span>", "term-line-green");
+      printTermLine("  3. <span class='term-cmd-link' onclick='openProjectModal(2)'>[OPEN] Temuin (QR Code Lost & Found Platform)</span>", "term-line-green");
+      printTermLine("  4. <span class='term-cmd-link' onclick='openProjectModal(3)'>[OPEN] Lintas (Zero-Cloud Android-PC Ecosystem)</span>", "term-line-green");
+      printTermLine("  5. <span class='term-cmd-link' onclick='openProjectModal(4)'>[OPEN] NenaCare (AI K3 Incident & Safety Audit)</span>", "term-line-green");
+      printTermLine("  6. <span class='term-cmd-link' onclick='openProjectModal(5)'>[OPEN] ITB STIKOM Bali TheoTown (Educational Mod)</span>", "term-line-green");
+      printTermLine("  7. <span class='term-cmd-link' onclick='openProjectModal(6)'>[OPEN] NeuroFly (Drosophila Connectome Pong AI)</span>", "term-line-green");
+      printTermLine("  8. <span class='term-cmd-link' onclick='openProjectModal(7)'>[OPEN] Bingkai (Offline Local-First Photo Gallery)</span>", "term-line-green");
+      printTermLine("  9. <span class='term-cmd-link' onclick='openProjectModal(8)'>[OPEN] Makalah Generator (Smart Research Assistant)</span>", "term-line-green");
+      printTermLine("> Tip: Ketik 'project 1' sampai 'project 9' atau 'archive' untuk membuka katalog lengkap.", "term-line-white");
       printTermLine("---------------------------------------------------------", "term-line-divider");
       break;
 
     case "project 1":
     case "project1":
-    case "neurofly":
+    case "tatagih":
       if (typeof openProjectModal === "function") openProjectModal(0);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 01: NeuroFly.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 01: Tatagih.", "term-line-green");
       break;
 
     case "project 2":
     case "project2":
-    case "tatagih":
+    case "sigap":
       if (typeof openProjectModal === "function") openProjectModal(1);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 02: Tatagih.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 02: SIGAP.", "term-line-green");
       break;
 
     case "project 3":
     case "project3":
-    case "lintas":
+    case "temuin":
       if (typeof openProjectModal === "function") openProjectModal(2);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 03: Lintas.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 03: Temuin.", "term-line-green");
       break;
 
     case "project 4":
     case "project4":
-    case "bingkai":
+    case "lintas":
       if (typeof openProjectModal === "function") openProjectModal(3);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 04: Bingkai.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 04: Lintas.", "term-line-green");
       break;
 
     case "project 5":
     case "project5":
-    case "sigap":
+    case "nenacare":
       if (typeof openProjectModal === "function") openProjectModal(4);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 05: Sigap.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 05: NenaCare.", "term-line-green");
       break;
 
     case "project 6":
     case "project6":
-    case "temuin":
+    case "theotown":
+    case "stikom":
       if (typeof openProjectModal === "function") openProjectModal(5);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 06: Temuin.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 06: ITB STIKOM Bali TheoTown.", "term-line-green");
       break;
 
     case "project 7":
     case "project7":
-    case "nenacare":
+    case "neurofly":
       if (typeof openProjectModal === "function") openProjectModal(6);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 07: NenaCare.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 07: NeuroFly.", "term-line-green");
+      break;
+
+    case "project 8":
+    case "project8":
+    case "bingkai":
+      if (typeof openProjectModal === "function") openProjectModal(7);
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 08: Bingkai.", "term-line-green");
+      break;
+
+    case "project 9":
+    case "project9":
+    case "makalah":
+      if (typeof openProjectModal === "function") openProjectModal(8);
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 09: Makalah Generator.", "term-line-green");
       break;
 
     case "archive":
@@ -716,7 +733,26 @@ if (contactForm) {
 function initModalScrollLock() {
   const modals = document.querySelectorAll(".modal");
   modals.forEach((modal) => {
+    // Teruskan scroll roda mouse / trackpad 2 jari jika kursor berada di header/footer modal ke modal-body
+    modal.addEventListener(
+      "wheel",
+      (e) => {
+        const modalBody = modal.querySelector(".modal-body");
+        if (!modalBody) return;
+        if (e.target !== modalBody && !modalBody.contains(e.target)) {
+          modalBody.scrollTop += e.deltaY;
+          e.preventDefault();
+        }
+      },
+      { passive: false }
+    );
+
     modal.addEventListener("show.bs.modal", () => {
+      // Hentikan Lenis agar tidak mencegat scroll 2 jari / wheel pada trackpad
+      if (window.lenis && typeof window.lenis.stop === "function") {
+        window.lenis.stop();
+      }
+
       document.documentElement.classList.add("modal-open");
       document.body.classList.add("modal-open");
 
@@ -736,6 +772,11 @@ function initModalScrollLock() {
           if (miniConsole) miniConsole.style.removeProperty("display");
           const fontWidget = document.querySelector(".accessibility-wrapper");
           if (fontWidget) fontWidget.style.removeProperty("display");
+
+          // Jalankan kembali Lenis saat semua modal tertutup
+          if (window.lenis && typeof window.lenis.start === "function") {
+            window.lenis.start();
+          }
         }
       }, 50);
     });

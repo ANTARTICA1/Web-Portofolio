@@ -1317,6 +1317,7 @@ footer {
   color: #cbd5e1;
   letter-spacing: 0.6px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .console-minimize-btn {
@@ -1460,6 +1461,7 @@ footer {
 #mini-console.minimized .console-header {
   border-bottom: none;
   padding: 8px 14px;
+  white-space: nowrap;
 }
 
 #mini-console.minimized .console-output-area,
@@ -1483,6 +1485,7 @@ footer {
   }
   #mini-console.minimized .console-title {
     font-size: 0.7rem;
+    white-space: nowrap;
   }
 }
 
