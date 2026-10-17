@@ -264,27 +264,7 @@ function openProjectModal(projectId) {
     repoBtn.innerHTML = `<i class="fab fa-github me-1"></i> ${project.repoText || "Source Code"}`;
     actionsContainer.appendChild(repoBtn);
   }
-  const statsSection = document.getElementById("modalStatsSection");
-  const statsContainer = document.getElementById("modalStatsContainer");
-  if (statsSection && statsContainer) {
-    if (project.stats && project.stats.length > 0) {
-      statsContainer.innerHTML = "";
-      project.stats.forEach((st) => {
-        const col = document.createElement("div");
-        col.className = "col-6 col-md-3";
-        col.innerHTML = `
-          <div class="p-2 rounded-2 border border-secondary border-opacity-25 h-100" style="background: rgba(14, 22, 42, 0.65);">
-            <div class="font-mono text-secondary text-uppercase" style="font-size: 0.7rem; letter-spacing: 0.5px;">${st.label}</div>
-            <div class="text-info fw-bold font-mono mt-1" style="font-size: 0.82rem; word-break: break-word;">${st.val}</div>
-          </div>
-        `;
-        statsContainer.appendChild(col);
-      });
-      statsSection.classList.remove("d-none");
-    } else {
-      statsSection.classList.add("d-none");
-    }
-  }
+
   const modalEl = document.getElementById("projectModal");
   const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
   modalInstance.show();

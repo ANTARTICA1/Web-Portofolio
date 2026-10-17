@@ -38,24 +38,6 @@ const projectsData = [
     description: "Smart subscription manager berbasis web dengan asisten AI Gemini untuk memantau tagihan digital, mendeteksi pemborosan dana, dan mengelola split bill otomatis.",
     problem: "Di era digital modern, hampir setiap orang memiliki banyak layanan berlangganan (streaming, software AI, cloud storage). Masalah utamanya adalah pencatatan tercecer tanpa tempat terpusat, tagihan terlupakan hingga memicu auto-renewal tanpa persiapan dana, terjadinya kebocoran dana tersembunyi (overlapping dan vampire spending), serta kerumitan mengelola langganan yang dipakai bersama teman atau keluarga (Family Plan).",
     solution: "Tatagih mentransformasi manajemen pengeluaran digital melalui ekosistem Laravel 13, Tailwind CSS, dan MySQL: sentralisasi seluruh langganan di satu tempat rapi, visualisasi tren finansial 6 bulan via Chart.js, Tata Asisten AI berbasis Google Gemini untuk Financial Health Score (0-100) dan rekomendasi penghematan konkret, modul patungan dan split bill otomatis dengan verifikasi bukti transfer, serta notifikasi proaktif reminder H-3 dan H-1 via Telegram Bot berbasis Laravel Scheduler dan Queue.",
-    stats: [
-      {
-        label: "Langganan Aktif",
-        val: "13 Layanan Terkelola"
-      },
-      {
-        label: "Pengeluaran Bulanan",
-        val: "Rp 3.075.000 / bln"
-      },
-      {
-        label: "Proyeksi Tahunan",
-        val: "Rp 36.900.000 / thn"
-      },
-      {
-        label: "Tata Asisten AI",
-        val: "Health Score 65 (Gemini)"
-      }
-    ],
     features: [
       {
         title: "Manajemen Langganan & Auto-Renewal",
@@ -143,24 +125,6 @@ const projectsData = [
     description: "Aplikasi keamanan smartphone anti-maling berbasis sensor gerak dan charger dengan alarm darurat kontinu, volume watchdog 100%, serta bukti foto penyusup dan GPS.",
     problem: "Saat smartphone ditinggalkan di ruang publik (meja kafe, perpustakaan, ruang rapat, atau stasiun pengisian daya), perangkat sangat rentan diambil atau dicabut kabel chargernya secara tiba-tiba tanpa sepengetahuan pemilik.",
     solution: "SIGAP menghadirkan sistem proteksi hardware real-time berbasis Flutter & Dart dengan siklus Detect → Alert → Lock → Record → Review: Detect memantau pergerakan fisik via stream akselerometer XYZ dan status charger; Alert memicu sirine 100% Volume Watchdog dan getaran berulang; Lock mengunci layar darurat immersiveSticky dengan validasi PIN lokal; Record memotret wajah penyusup diam-diam via kamera depan dan snapshot koordinat GPS; serta Review menyimpan bukti insiden lokal.",
-    stats: [
-      {
-        label: "Konsep Sistem",
-        val: "Detect → Alert → Lock"
-      },
-      {
-        label: "Motion Threshold",
-        val: "Δ >= 2.0 (XYZ Stream)"
-      },
-      {
-        label: "Hardware Sensor",
-        val: "Accelerometer & Charger"
-      },
-      {
-        label: "Respons Darurat",
-        val: "100% Vol Watchdog + Cam/GPS"
-      }
-    ],
     features: [
       {
         title: "Deteksi Gerakan Akselerometer XYZ",
@@ -234,24 +198,6 @@ const projectsData = [
     description: "Plugin kustom TheoTown yang menghadirkan gedung kampus ITB STIKOM Bali dengan grafis pixel art isometrik 2.5D arsitektur khas Bali serta fungsi simulasi edukasi kota aktif.",
     problem: "Dalam game simulasi tata kota TheoTown, katalog bangunan institusi pendidikan tinggi sangat terbatas dan didominasi arsitektur bergaya barat generik. Pemain yang ingin membangun kota bernuansa Indonesia tidak memiliki gedung universitas lokal berornamen khas nusantara (seperti gaya Bali). Banyak modder juga hanya membuat mod bertipe dekorasi pasif tanpa fungsi gameplay, serta tidak menyertakan struktur manifest dan panduan cross-platform (Android & PC) yang rapi.",
     solution: "ITB STIKOM Bali Building Plugin hadir sebagai modifikasi game resmi berkualitas tinggi: custom isometric pixel art (StikomBali.png) dengan sentuhan arsitektur khas Bali (atap tumpang, ornamen kukul, gerbang candi), terdaftar resmi di engine simulasi pendidikan TheoTown (kapasitas 2.500 mahasiswa dan radius pengaruh 700 tile), ground rendering aktif (draw ground: true) agar pekarangan menyatu mulus dengan medan game, serta konfigurasi code.json dan plugin.manifest multiplatform (Android & PC).",
-    stats: [
-      {
-        label: "Dimensi Bangunan",
-        val: "5 × 5 Tile Isometric"
-      },
-      {
-        label: "Tipe Objek Game",
-        val: "Type: education"
-      },
-      {
-        label: "Kapasitas Mahasiswa",
-        val: "2.500 Mahasiswa (High)"
-      },
-      {
-        label: "Radius Pengaruh",
-        val: "700 Tile (City-Wide)"
-      }
-    ],
     features: [
       {
         title: "Custom ITB STIKOM Bali Building (5 × 5 Tile)",
@@ -335,24 +281,6 @@ const projectsData = [
     description: "Sistem simulasi biologis & komputasi saraf 3D yang menghubungkan konektom visual lalat buah (Drosophila MaleCNS v1.0, 600 neuron, 4.297 sinapsis) dengan gameplay 3D Pong retro real-time di mana manusia dapat bertanding langsung melawan kecerdasan saraf biologis lalat.",
     problem: "Model AI modern seperti Deep Reinforcement Learning memerlukan jutaan parameter tensor berat dan komputasi GPU besar untuk menyelesaikan tugas sensorimotorik sederhana. Sementara di alam, serangga kecil seperti lalat buah (Drosophila melanogaster) memiliki volume otak kurang dari 1 mm³ dengan konsumsi daya mikrowatt, namun mampu mendeteksi arah gerak objek dan bermanuver instan dalam milidetik.",
     solution: "NeuroFly merekonstruksi sirkuit optik biologis Drosophila dari dataset konektom MaleCNS v1.0 Janelia Research Campus (600 neuron visual dan motorik) untuk mengendalikan agen lalat secara otonom dalam permainan 3D Pong. Melalui pemodelan Hassenstein-Reichardt correlator pada neuron T4/T5 dan jalur descending motor neurons (DNs), lalat mampu melihat trajektori bola dan menggerakkan sayapnya untuk memukul bola secara presisi, menghadirkan arena pertandingan langsung melawan agen biologis di browser.",
-    stats: [
-      {
-        label: "Connectome Dataset",
-        val: "MaleCNS v1.0 Janelia"
-      },
-      {
-        label: "Neuron & Sinapsis",
-        val: "600 Neurons / 4.297 Synapses"
-      },
-      {
-        label: "Sensory & Motion Pools",
-        val: "Mi1, Tm, T4/T5, VS, DNs"
-      },
-      {
-        label: "Gameplay Mode",
-        val: "3D Pong: Human vs Fly Brain"
-      }
-    ],
     features: [
       {
         title: "Arena 3D Pong Interaktif (Lawan Otak Lalat)",
@@ -427,24 +355,6 @@ const projectsData = [
     description: "Platform pelacak dan penemu barang hilang berbasis kode QR unik dengan snapshot lokasi GPS, dokumentasi bukti foto, dan notifikasi real-time ke pemilik.",
     problem: "Barang berharga yang tertinggal atau tercecer di ruang publik (kunci motor, dompet, tas, dokumen) sering kali sulit dikembalikan karena penemu tidak memiliki saluran komunikasi langsung kepada pemilik sah tanpa mengekspos data pribadi. Selain itu, titik lokasi penemuan sering tidak terdokumentasi dengan akurat dan pemilik tidak memiliki sistem terstruktur untuk memantau status barang miliknya.",
     solution: "Temuin menyediakan infrastruktur digital pelacak barang hilang melalui alur: Pemilik Barang → QR Code → Penemu → Laporan → Lokasi GPS → Notifikasi In-App → Pemilik. Setiap barang diberi stiker QR unik yang jika dipindai penemu akan membuka formulir pelaporan dengan snapshot lokasi GPS dan foto bukti, langsung memberitahu pemilik secara real-time tanpa membocorkan nomor telepon atau identitas pribadi pemilik.",
-    stats: [
-      {
-        label: "Identitas Barang",
-        val: "QR Code Unik Tiap Item"
-      },
-      {
-        label: "Siklus Status",
-        val: "Safe → Lost → Found → Claimed"
-      },
-      {
-        label: "Pencatatan Temuan",
-        val: "GPS Snapshot & Foto Bukti"
-      },
-      {
-        label: "Monetisasi",
-        val: "Rp15.000 Boost via Midtrans"
-      }
-    ],
     features: [
       {
         title: "QR Code Unik Tiap Barang (qr_flutter)",
@@ -526,24 +436,6 @@ const projectsData = [
     description: "Ekosistem produktivitas lintas perangkat yang menghubungkan smartphone Android dan PC Windows via Wi-Fi lokal untuk remote trackpad, transfer berkas instan berintegritas SHA-256, dan auto-lock PC (NearLock).",
     problem: "Dalam aktivitas kerja sehari-hari, pengguna laptop Windows sering direpotkan saat harus berbagi berkas atau mengontrol laptop dari jarak jauh: kirim file/teks lewat chat WhatsApp/Drive yang boros kuota dan berisiko privasi; saat presentasi atau menonton video dari sofa harus tetap berdiri di dekat keyboard/mouse fisik PC; serta kebiasaan lupa mengunci workstation (Win + L) saat meninggalkan meja kerja di kantor atau kafe.",
     solution: "Lintas hadir sebagai ekosistem produktivitas lintas perangkat yang menghubungkan smartphone Android dan komputer Windows via Wi-Fi lokal (LAN) tanpa server pihak ketiga: Windows Companion menjalankan server HTTP & WebSocket lokal pada port 8945 dengan pairing instan QR Code bertoken; remote touchpad multi-gesture & keyboard virtual via Windows Input API; Instant Drop 2 arah dengan verifikasi hash SHA-256 otomatis; sinkronisasi clipboard universal; dan fitur NearLock yang mengunci Windows workstation otomatis saat ponsel menjauh.",
-    stats: [
-      {
-        label: "Arsitektur Sistem",
-        val: "Local Client-Server (Zero Cloud)"
-      },
-      {
-        label: "Port Komunikasi",
-        val: "Port 8945 (HTTP & WebSocket)"
-      },
-      {
-        label: "Verifikasi Integritas",
-        val: "SHA-256 Checksum Matching"
-      },
-      {
-        label: "Proteksi NearLock",
-        val: "Auto-Lock PC by Phone Proximity"
-      }
-    ],
     features: [
       {
         title: "Pairing Cepat via QR Code & Token Kedaluwarsa",
@@ -623,24 +515,6 @@ const projectsData = [
     description: "Sistem manajemen keselamatan kerja (K3) berbasis AI Gemini dan integrasi Telegram Bot untuk pelaporan insiden, analisis risiko otomatis, dan monitoring real-time industri F&B.",
     problem: "Di lingkungan kafe dan industri F&B yang dinamis (seperti Nena Cafe), potensi bahaya keselamatan kerja (K3)—mulai dari kebocoran gas LPG dapur, kabel kelistrikan terbuka, lantai licin, hingga isu ergonomi—sering kali terlambat dilaporkan karena proses manual yang kaku. Staf maupun pelanggan enggan melapor karena khawatir identitasnya terekspos, sementara pihak manajemen kesulitan memilah mana insiden berisiko tinggi tanpa standarisasi prioritas yang cepat.",
     solution: "NenaCare mentransformasi penanganan keselamatan kerja menjadi sistem digital terpadu end-to-end: Pelaporan Mudah & Opsional Anonim → Analisis Risiko Otomatis berbasis Google Gemini 2.5 Flash-Lite → Notifikasi Cepat & Remote Control Status via Telegram Bot → Live Monitoring Dashboard dengan Visualisasi Chart.js → Dokumentasi Audit & Ekspor PDF Dompdf. Pengelola kafe mendapatkan peringatan dini seketika dengan rekomendasi tindakan mitigasi terukur.",
-    stats: [
-      {
-        label: "Analisis AI Gemini",
-        val: "Prioritas & Tindakan Otomatis"
-      },
-      {
-        label: "Remote Notifikasi",
-        val: "Telegram Bot Interactive Action"
-      },
-      {
-        label: "Mode Pelaporan",
-        val: "Identitas Publik / 100% Anonim"
-      },
-      {
-        label: "Audit & Pelaporan",
-        val: "Ekspor PDF Landscape & Chart.js"
-      }
-    ],
     features: [
       {
         title: "Sistem Pelaporan Insiden K3 F&B",
@@ -725,24 +599,6 @@ const projectsData = [
     description: "Aplikasi galeri foto lokal (Local-First) untuk merapikan ribuan foto secara cepat lewat kurasi swipe, deteksi foto kembar, dan remote kontrol via smartphone atau gamepad.",
     problem: "Kita semua punya folder foto di laptop yang isinya ribuan gambar tak beraturan. Merapikannya terasa melelahkan karena harus klik satu per satu di depan meja kerja. Ingin pakai layanan Cloud seperti Google Photos, tapi takut privasi bocor atau malas menunggu upload berjam-jam untuk file bergiga-giga. Ditambah lagi, melihat foto di depan monitor pakai mouse terasa kaku dan kurang santai.",
     solution: "Bingkai bekerja 100% di dalam komputer pengguna secara offline (Local-First). Foto tidak dipindah, tidak diduplikasi, dan sama sekali tidak diunggah ke internet. Bingkai hanya 'membaca' folder lokal dan menyajikannya dalam galeri modern yang super cepat. Pengguna juga bisa mengontrol galeri foto komputernya dari jarak jauh—cukup rebahan di sofa sambil menikmati kenangan menggunakan Smartphone (Wi-Fi lokal) atau Stick Gamepad (PlayStation/Xbox via Gamepad API).",
-    stats: [
-      {
-        label: "Privasi Data",
-        val: "100% Offline (Local-First)"
-      },
-      {
-        label: "Kontrol Jarak Jauh",
-        val: "Stick Gamepad & HP Wi-Fi"
-      },
-      {
-        label: "Kurasi Foto",
-        val: "Swipe Mode (Tinder-Style)"
-      },
-      {
-        label: "Optimasi Memori",
-        val: "Pendeteksi Foto Kembar"
-      }
-    ],
     features: [
       {
         title: "100% Offline & Privasi Terjaga (Local-First)",
@@ -807,24 +663,6 @@ const projectsData = [
     description: "Asisten penulisan ilmiah berbasis AI untuk menyusun kerangka riset terstruktur dan format sitasi standar akademik (APA, IEEE, Harvard) secara otomatis.",
     problem: "Penyusunan kerangka awal draf penelitian, perumusan rumusan masalah, dan pengorganisasian daftar pustaka sesuai kaidah ilmiah sering kali memakan waktu berhari-hari bagi mahasiswa dan peneliti akademis.",
     solution: "Makalah Generator mengotomatisasi penyusunan outline riset dan penataan referensi sitasi secara terstruktur sesuai kaidah penulisan ilmiah standar: menghasilkan rumusan masalah, tinjauan pustaka, dan metodologi riset yang koheren, memformat sitasi otomatis sesuai standar APA/IEEE/Harvard, serta menyediakan opsi ekspor instan ke format dokumen cetak PDF dan source code LaTeX.",
-    stats: [
-      {
-        label: "Model AI",
-        val: "GPT-4 / Gemini Pipeline"
-      },
-      {
-        label: "Standar Sitasi",
-        val: "APA 7th, IEEE, Harvard"
-      },
-      {
-        label: "Format Ekspor",
-        val: "PDF & LaTeX Source"
-      },
-      {
-        label: "Waktu Draf",
-        val: "< 45 Detik"
-      }
-    ],
     features: [
       {
         title: "Perumusan Outline Riset Terstruktur",
@@ -879,24 +717,6 @@ const projectsData = [
     description: "Aplikasi dompet digital modern dengan fitur transaksi QRIS instan, pembagian tagihan split-bill otomatis, dan analitik budgeting bulanan yang cerdas.",
     problem: "Pencatatan pengeluaran harian dan pengelolaan saldo e-wallet sering terpecah-pecah di berbagai aplikasi, menyulitkan pengguna dalam mengontrol batas anggaran bulanan dan membagi tagihan makan bersama.",
     solution: "DompetQ memadukan dompet digital dengan pelacak keuangan cerdas: transaksi QRIS instan berlatensi rendah (<200ms), autentikasi biometrik & enkripsi PIN bertingkat, fitur split-bill otomatis untuk pembagian tagihan adil, serta visualisasi mutasi transaksi dan grafik breakdown anggaran bulanan.",
-    stats: [
-      {
-        label: "Fitur Utama",
-        val: "QRIS & Split Bill"
-      },
-      {
-        label: "Keamanan",
-        val: "Biometric & PIN Encryption"
-      },
-      {
-        label: "Latency Transaksi",
-        val: "< 200ms"
-      },
-      {
-        label: "Analitik Keuangan",
-        val: "Monthly Budget Breakdown"
-      }
-    ],
     features: [
       {
         title: "Transaksi QRIS Cepat & Praktis",
