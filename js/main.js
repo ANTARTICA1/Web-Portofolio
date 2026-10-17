@@ -466,17 +466,18 @@ function handleTerminalCommand(rawCmd) {
     case "projects":
     case "project":
       smoothScrollTo("#projects");
-      printTermLine("[9 PROYEK ASLI & TERVERIFIKASI]:", "term-line-cyan");
+      printTermLine("[10 PROYEK ASLI & TERVERIFIKASI]:", "term-line-cyan");
       printTermLine("  1. <span class='term-cmd-link' onclick='openProjectModal(0)'>[OPEN] Tatagih (Smart Subscription & AI Assistant)</span>", "term-line-green");
       printTermLine("  2. <span class='term-cmd-link' onclick='openProjectModal(1)'>[OPEN] SIGAP (Mobile Anti-Theft Security & Alarm)</span>", "term-line-green");
-      printTermLine("  3. <span class='term-cmd-link' onclick='openProjectModal(2)'>[OPEN] Temuin (QR Code Lost & Found Platform)</span>", "term-line-green");
-      printTermLine("  4. <span class='term-cmd-link' onclick='openProjectModal(3)'>[OPEN] Lintas (Zero-Cloud Android-PC Ecosystem)</span>", "term-line-green");
-      printTermLine("  5. <span class='term-cmd-link' onclick='openProjectModal(4)'>[OPEN] NenaCare (AI K3 Incident & Safety Audit)</span>", "term-line-green");
-      printTermLine("  6. <span class='term-cmd-link' onclick='openProjectModal(5)'>[OPEN] ITB STIKOM Bali TheoTown (Educational Mod)</span>", "term-line-green");
-      printTermLine("  7. <span class='term-cmd-link' onclick='openProjectModal(6)'>[OPEN] NeuroFly (Drosophila Connectome Pong AI)</span>", "term-line-green");
+      printTermLine("  3. <span class='term-cmd-link' onclick='openProjectModal(2)'>[OPEN] ITB STIKOM Bali TheoTown (Educational Mod)</span>", "term-line-green");
+      printTermLine("  4. <span class='term-cmd-link' onclick='openProjectModal(3)'>[OPEN] NeuroFly (Drosophila Connectome Pong AI)</span>", "term-line-green");
+      printTermLine("  5. <span class='term-cmd-link' onclick='openProjectModal(4)'>[OPEN] Temuin (QR Code Lost & Found Platform)</span>", "term-line-green");
+      printTermLine("  6. <span class='term-cmd-link' onclick='openProjectModal(5)'>[OPEN] Lintas (Zero-Cloud Android-PC Ecosystem)</span>", "term-line-green");
+      printTermLine("  7. <span class='term-cmd-link' onclick='openProjectModal(6)'>[OPEN] NenaCare (AI K3 Incident & Safety Audit)</span>", "term-line-green");
       printTermLine("  8. <span class='term-cmd-link' onclick='openProjectModal(7)'>[OPEN] Bingkai (Offline Local-First Photo Gallery)</span>", "term-line-green");
       printTermLine("  9. <span class='term-cmd-link' onclick='openProjectModal(8)'>[OPEN] Makalah Generator (Smart Research Assistant)</span>", "term-line-green");
-      printTermLine("> Tip: Ketik 'project 1' sampai 'project 9' atau 'archive' untuk membuka katalog lengkap.", "term-line-white");
+      printTermLine(" 10. <span class='term-cmd-link' onclick='openProjectModal(9)'>[OPEN] DompetQ (Fintech E-Wallet Mobile App)</span>", "term-line-green");
+      printTermLine("> Tip: Ketik 'project 1' sampai 'project 10' atau 'archive' untuk membuka katalog lengkap.", "term-line-white");
       printTermLine("---------------------------------------------------------", "term-line-divider");
       break;
 
@@ -496,38 +497,38 @@ function handleTerminalCommand(rawCmd) {
 
     case "project 3":
     case "project3":
-    case "temuin":
+    case "theotown":
+    case "stikom":
       if (typeof openProjectModal === "function") openProjectModal(2);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 03: Temuin.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 03: ITB STIKOM Bali TheoTown.", "term-line-green");
       break;
 
     case "project 4":
     case "project4":
-    case "lintas":
+    case "neurofly":
       if (typeof openProjectModal === "function") openProjectModal(3);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 04: Lintas.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 04: NeuroFly.", "term-line-green");
       break;
 
     case "project 5":
     case "project5":
-    case "nenacare":
+    case "temuin":
       if (typeof openProjectModal === "function") openProjectModal(4);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 05: NenaCare.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 05: Temuin.", "term-line-green");
       break;
 
     case "project 6":
     case "project6":
-    case "theotown":
-    case "stikom":
+    case "lintas":
       if (typeof openProjectModal === "function") openProjectModal(5);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 06: ITB STIKOM Bali TheoTown.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 06: Lintas.", "term-line-green");
       break;
 
     case "project 7":
     case "project7":
-    case "neurofly":
+    case "nenacare":
       if (typeof openProjectModal === "function") openProjectModal(6);
-      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 07: NeuroFly.", "term-line-green");
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 07: NenaCare.", "term-line-green");
       break;
 
     case "project 8":
@@ -542,6 +543,13 @@ function handleTerminalCommand(rawCmd) {
     case "makalah":
       if (typeof openProjectModal === "function") openProjectModal(8);
       printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 09: Makalah Generator.", "term-line-green");
+      break;
+
+    case "project 10":
+    case "project10":
+    case "dompetq":
+      if (typeof openProjectModal === "function") openProjectModal(9);
+      printTermLine("> [MODAL LAUNCH] Membuka lembar teknis Proyek 10: DompetQ.", "term-line-green");
       break;
 
     case "archive":

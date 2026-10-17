@@ -1,36 +1,25 @@
 let projectsScrollTrigger = null;
-
 function initFullscreenProjectsGSAP() {
-
   initMobileCarouselObserver();
-
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
     return;
   }
-
   gsap.registerPlugin(ScrollTrigger);
-
   ScrollTrigger.matchMedia({
-
     "(min-width: 992px)": function () {
       const pinWrapper = document.getElementById("projects-pin-wrapper");
       if (!pinWrapper) return;
-
       const dots = document.querySelectorAll(".slide-indicator-dot");
       const slide0 = document.getElementById("project-slide-0");
       const slide1 = document.getElementById("project-slide-1");
       const slide2 = document.getElementById("project-slide-2");
       const slide3 = document.getElementById("project-slide-3");
-
       if (!slide0 || !slide1 || !slide2 || !slide3) return;
-
       gsap.set(slide0, { yPercent: 0, autoAlpha: 1, zIndex: 1, force3D: true });
       gsap.set(slide1, { yPercent: 100, autoAlpha: 1, zIndex: 2, force3D: true });
       gsap.set(slide2, { yPercent: 100, autoAlpha: 1, zIndex: 3, force3D: true });
       gsap.set(slide3, { yPercent: 100, autoAlpha: 1, zIndex: 4, force3D: true });
-
       let lastActiveDot = -1;
-
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: "#projects",
@@ -55,7 +44,6 @@ function initFullscreenProjectsGSAP() {
             } else {
               activeDot = 3;
             }
-
             if (activeDot !== lastActiveDot) {
               lastActiveDot = activeDot;
               dots.forEach((d, idx) => {
@@ -66,44 +54,37 @@ function initFullscreenProjectsGSAP() {
           },
         },
       });
-
       tl.to(slide1, {
         yPercent: 0,
         ease: "none",
         duration: 1,
         force3D: true,
       })
-
       .to(slide2, {
         yPercent: 0,
         ease: "none",
         duration: 1,
         force3D: true,
       })
-
       .to(slide3, {
         yPercent: 0,
         ease: "none",
         duration: 1,
         force3D: true,
       });
-
       projectsScrollTrigger = tl.scrollTrigger;
     },
-
     "(max-width: 991px)": function () {
       projectsScrollTrigger = null;
     },
   });
 }
-
 function jumpToProjectSlide(index) {
   const dots = document.querySelectorAll(".slide-indicator-dot");
   dots.forEach((d, idx) => {
     if (idx === index) d.classList.add("active");
     else d.classList.remove("active");
   });
-
   const st = projectsScrollTrigger || ScrollTrigger.getById("projects-pin");
   if (st && window.innerWidth >= 992) {
     const progressMap = [0.01, 0.38, 0.72, 0.98];
@@ -116,20 +97,16 @@ function jumpToProjectSlide(index) {
     }
   }
 }
-
 function scrollMobileCard(index) {
   const track = document.getElementById("mobileCarouselTrack");
   if (!track) return;
   const cards = track.querySelectorAll(".mobile-carousel-card");
   if (!cards[index]) return;
-
   const card = cards[index];
   const targetLeft = card.offsetLeft - (track.clientWidth - card.clientWidth) / 2;
   track.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
-
   updateMobileDots(index);
 }
-
 function updateMobileDots(activeIndex) {
   const dots = document.querySelectorAll("#mobileCarouselDots .mobile-dot");
   dots.forEach((dot, idx) => {
@@ -140,11 +117,9 @@ function updateMobileDots(activeIndex) {
     }
   });
 }
-
 function initMobileCarouselObserver() {
   const track = document.getElementById("mobileCarouselTrack");
   if (!track) return;
-
   let ticking = false;
   track.addEventListener(
     "scroll",
@@ -155,7 +130,6 @@ function initMobileCarouselObserver() {
           const trackCenter = track.scrollLeft + track.clientWidth / 2;
           let closestIdx = 0;
           let minDistance = Infinity;
-
           cards.forEach((card, idx) => {
             const cardCenter = card.offsetLeft + card.clientWidth / 2;
             const dist = Math.abs(trackCenter - cardCenter);
@@ -164,7 +138,6 @@ function initMobileCarouselObserver() {
               closestIdx = idx;
             }
           });
-
           updateMobileDots(closestIdx);
           ticking = false;
         });
@@ -174,37 +147,79 @@ function initMobileCarouselObserver() {
     { passive: true }
   );
 }
-
 function openProjectModal(projectId) {
   const dataset = (typeof window !== "undefined" && window.projectsData) ? window.projectsData : (typeof projectsData !== "undefined" ? projectsData : []);
   const numId = typeof projectId === "number" ? projectId : parseInt(projectId, 10);
   const project = dataset.find((p) => p.id === numId) || dataset.find((p) => typeof projectId === "string" && p.title.toLowerCase().includes(projectId.toLowerCase()));
   if (!project) return;
-
   const archiveModalEl = document.getElementById("archiveModal");
   if (archiveModalEl && archiveModalEl.classList.contains("show")) {
     const archiveInstance = bootstrap.Modal.getInstance(archiveModalEl);
     if (archiveInstance) archiveInstance.hide();
   }
-
   document.getElementById("modalCategory").textContent = project.category;
   document.getElementById("projectModalTitle").textContent = project.title;
-  document.getElementById("modalImage").src = project.image;
-  document.getElementById("modalImage").alt = project.title;
+  const modalImg = document.getElementById("modalImage");
+  modalImg.src = project.image;
+  modalImg.alt = project.title;
 
+  const captionEl = document.getElementById("modalPhotoCaption");
+  const galleryEl = document.getElementById("modalGalleryThumbnails");
+  if (galleryEl) {
+    galleryEl.innerHTML = "";
+    if (project.photos && project.photos.length > 1) {
+      galleryEl.classList.remove("d-none");
+      project.photos.forEach((photo, idx) => {
+        const thumb = document.createElement("button");
+        thumb.type = "button";
+        thumb.className = `modal-gallery-thumb ${idx === 0 ? "active" : ""}`;
+        thumb.title = photo.title || `Foto ${idx + 1}`;
+        thumb.innerHTML = `<img src="${photo.imageUrl}" alt="${photo.title || project.title}" loading="lazy" />`;
+        thumb.onclick = () => {
+          document.querySelectorAll(".modal-gallery-thumb").forEach((t) => t.classList.remove("active"));
+          thumb.classList.add("active");
+          modalImg.style.opacity = "0.4";
+          setTimeout(() => {
+            modalImg.src = photo.imageUrl;
+            modalImg.alt = photo.title || project.title;
+            modalImg.style.opacity = "1";
+          }, 120);
+          if (captionEl) {
+            if (photo.caption) {
+              captionEl.innerHTML = `<i class="fas fa-circle-info text-info me-1"></i> <span class="text-white fw-bold">${photo.title ? photo.title + ": " : ""}</span>${photo.caption}`;
+              captionEl.classList.remove("d-none");
+            } else {
+              captionEl.classList.add("d-none");
+            }
+          }
+        };
+        galleryEl.appendChild(thumb);
+      });
+      if (captionEl && project.photos[0] && project.photos[0].caption) {
+        captionEl.innerHTML = `<i class="fas fa-circle-info text-info me-1"></i> <span class="text-white fw-bold">${project.photos[0].title ? project.photos[0].title + ": " : ""}</span>${project.photos[0].caption}`;
+        captionEl.classList.remove("d-none");
+      } else if (captionEl) {
+        captionEl.classList.add("d-none");
+      }
+    } else {
+      galleryEl.classList.add("d-none");
+      if (captionEl && project.photos && project.photos[0] && project.photos[0].caption) {
+        captionEl.innerHTML = `<i class="fas fa-circle-info text-info me-1"></i> <span class="text-white fw-bold">${project.photos[0].title ? project.photos[0].title + ": " : ""}</span>${project.photos[0].caption}`;
+        captionEl.classList.remove("d-none");
+      } else if (captionEl) {
+        captionEl.classList.add("d-none");
+      }
+    }
+  }
   const roleEl = document.getElementById("modalRole");
   if (roleEl) roleEl.textContent = project.role;
-
   const typeEl = document.getElementById("modalType");
   if (typeEl) typeEl.textContent = project.type;
-
   const statusEl = document.getElementById("modalStatus");
   if (statusEl) statusEl.textContent = project.status;
-
   document.getElementById("modalProblem").textContent = project.problem;
   document.getElementById("modalSolution").textContent = project.solution;
   document.getElementById("modalImpact").textContent = project.impact;
-
   const featuresContainer = document.getElementById("modalFeaturesContainer");
   featuresContainer.innerHTML = "";
   project.features.forEach((feat) => {
@@ -221,7 +236,6 @@ function openProjectModal(projectId) {
     `;
     featuresContainer.appendChild(col);
   });
-
   const techContainer = document.getElementById("modalTechStack");
   techContainer.innerHTML = "";
   project.techStack.forEach((tech) => {
@@ -230,10 +244,8 @@ function openProjectModal(projectId) {
     span.textContent = tech;
     techContainer.appendChild(span);
   });
-
   const actionsContainer = document.getElementById("modalActionButtons");
   actionsContainer.innerHTML = "";
-
   if (project.demoUrl) {
     const demoBtn = document.createElement("a");
     demoBtn.href = project.demoUrl;
@@ -243,7 +255,6 @@ function openProjectModal(projectId) {
     demoBtn.innerHTML = `<i class="fas ${project.demoIcon || "fa-arrow-up-right-from-square"} me-1"></i> ${project.demoText || "Live Demo"}`;
     actionsContainer.appendChild(demoBtn);
   }
-
   if (project.repoUrl) {
     const repoBtn = document.createElement("a");
     repoBtn.href = project.repoUrl;
@@ -253,7 +264,6 @@ function openProjectModal(projectId) {
     repoBtn.innerHTML = `<i class="fab fa-github me-1"></i> ${project.repoText || "Source Code"}`;
     actionsContainer.appendChild(repoBtn);
   }
-
   const statsSection = document.getElementById("modalStatsSection");
   const statsContainer = document.getElementById("modalStatsContainer");
   if (statsSection && statsContainer) {
@@ -275,11 +285,9 @@ function openProjectModal(projectId) {
       statsSection.classList.add("d-none");
     }
   }
-
   const modalEl = document.getElementById("projectModal");
   const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
   modalInstance.show();
-
   if (typeof gsap !== "undefined") {
     gsap.fromTo(
       ".cyber-modal-content",
@@ -288,10 +296,8 @@ function openProjectModal(projectId) {
     );
   }
 }
-
 let currentArchiveFilter = "all";
 let currentArchiveSearch = "";
-
 function openArchiveModal() {
   updateArchiveCategoryCounts();
   renderProjectsArchive(currentArchiveFilter, currentArchiveSearch);
@@ -301,78 +307,62 @@ function openArchiveModal() {
     modalInstance.show();
   }
 }
-
 function filterArchiveCategory(category, btnEl) {
   currentArchiveFilter = category;
   document.querySelectorAll(".archive-filter-btn").forEach((b) => b.classList.remove("active"));
   if (btnEl) btnEl.classList.add("active");
   renderProjectsArchive(currentArchiveFilter, currentArchiveSearch);
 }
-
 function handleArchiveSearch(val) {
   currentArchiveSearch = (val || "").trim().toLowerCase();
   renderProjectsArchive(currentArchiveFilter, currentArchiveSearch);
 }
-
 function updateArchiveCategoryCounts() {
   const dataset = (typeof window !== "undefined" && window.projectsData) ? window.projectsData : (typeof projectsData !== "undefined" ? projectsData : []);
   const countAll = dataset.length;
   const countCyber = dataset.filter((p) => p.categoryType === "cyber").length;
   const countWeb = dataset.filter((p) => p.categoryType === "web").length;
   const countTools = dataset.filter((p) => p.categoryType === "tools").length;
-
   const elAll = document.getElementById("count-all");
   const elCyber = document.getElementById("count-cyber");
   const elWeb = document.getElementById("count-web");
   const elTools = document.getElementById("count-tools");
-
   if (elAll) elAll.textContent = countAll;
   if (elCyber) elCyber.textContent = countCyber;
   if (elWeb) elWeb.textContent = countWeb;
   if (elTools) elTools.textContent = countTools;
 }
-
 function renderProjectsArchive(category = "all", searchQuery = "") {
   const grid = document.getElementById("archiveProjectsGrid");
   const emptyState = document.getElementById("archiveEmptyState");
   const summaryText = document.getElementById("archiveSummaryText");
   if (!grid) return;
-
   const dataset = (typeof window !== "undefined" && window.projectsData) ? window.projectsData : (typeof projectsData !== "undefined" ? projectsData : []);
-
   const filtered = dataset.filter((p) => {
     const matchesCategory = category === "all" || p.categoryType === category;
     if (!matchesCategory) return false;
     if (!searchQuery) return true;
-
     const inTitle = p.title.toLowerCase().includes(searchQuery);
     const inCategory = p.category.toLowerCase().includes(searchQuery);
     const inProblem = (p.description || p.problem || "").toLowerCase().includes(searchQuery);
     const inTech = (p.techStack || []).some((t) => t.toLowerCase().includes(searchQuery));
     return inTitle || inCategory || inProblem || inTech;
   });
-
   grid.innerHTML = "";
-
   if (filtered.length === 0) {
     if (emptyState) emptyState.classList.remove("d-none");
     if (summaryText) summaryText.textContent = "0 proyek ditemukan";
     return;
   }
-
   if (emptyState) emptyState.classList.add("d-none");
   if (summaryText) summaryText.textContent = `Menampilkan ${filtered.length} dari ${dataset.length} total proyek`;
-
   filtered.forEach((p) => {
     const col = document.createElement("div");
     col.className = "col-md-6 col-lg-4";
-
     const categoryIcon = p.categoryType === "cyber" ? "fa-shield-halved text-danger" : p.categoryType === "web" ? "fa-code text-info" : "fa-gear text-success";
-
     const repoLink = p.repoUrl || "https://github.com/ANTARTICA1";
     const demoLink = p.demoUrl || repoLink;
     const demoTitle = p.demoUrl ? "Buka Live Demo" : "Lihat Demo / Dokumentasi di GitHub";
-
     col.innerHTML = `
       <div class="archive-project-card h-100 d-flex flex-column">
         <div class="archive-card-thumb position-relative d-block" onclick="openProjectModal(${p.id})" style="cursor: pointer;" title="Klik untuk melihat detail ${p.title}">
@@ -405,11 +395,9 @@ function renderProjectsArchive(category = "all", searchQuery = "") {
         </div>
       </div>
     `;
-
     grid.appendChild(col);
   });
 }
-
 if (typeof window !== "undefined") {
   window.switchProject = switchProject;
   window.prevProject = prevProject;
