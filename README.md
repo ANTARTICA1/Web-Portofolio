@@ -2,6 +2,10 @@
 
 Official personal developer portfolio website of Anak Agung Ngurah Krisna Artha Wibawa (GEKA.DEV), showcasing featured software engineering projects, technical competencies in cybersecurity and full-stack development, interactive application architecture overviews, and professional contact channels.
 
+## Interface Preview
+
+![GEKA.DEV Portfolio Desktop Preview](assets/preview_desktop.png)
+
 ## Overview
 
 This repository houses the source code for the high-performance, responsive portfolio platform engineered with a dark cybersecurity aesthetic. The application utilizes modern front-end web standards to present technical project case studies, interactive UI modals, live performance telemetry, and streamlined navigation across mobile, tablet, and desktop viewports.
@@ -81,3 +85,4 @@ Anak Agung Ngurah Krisna Artha Wibawa
 ## License
 
 This project is open-source and available under the terms of the MIT License.
+
